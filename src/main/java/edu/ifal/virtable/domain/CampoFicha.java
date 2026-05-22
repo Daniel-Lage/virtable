@@ -25,7 +25,7 @@ public class CampoFicha {
         return idSistemaRPG;
     }
 
-    public String getName() {
+    public String getNome() {
         return nome;
     }
 
@@ -37,4 +37,19 @@ public class CampoFicha {
         return tipoValor;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTipoCampo(TipoCampo tipoCampo) {
+        this.tipoCampo = tipoCampo;
+    }
+
+    public void setTipoValor(TipoValor tipoValor) {
+        this.tipoValor = tipoValor;
+    }
+
+    public void setIdSistemaRPG(int idSistemaRPG) {
+        this.idSistemaRPG = idSistemaRPG;
+    }
 }

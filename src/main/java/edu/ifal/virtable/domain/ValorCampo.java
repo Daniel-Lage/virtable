@@ -10,10 +10,11 @@ public class ValorCampo {
     /// Valor pode ser do tipo ValorInt ou ValorString
     private Valor valor;
 
-    public ValorCampo(int id, int idPersonagem, int idCampoFicha) {
+    public ValorCampo(int id, int idPersonagem, int idCampoFicha, Valor valor) {
         this.id = id;
         this.idPersonagem = idPersonagem;
         this.idCampoFicha = idCampoFicha;
+        this.valor = valor;
     }
 
     public int getId() {
@@ -31,9 +32,24 @@ public class ValorCampo {
     public Valor getValor() {
         return valor;
     }
+    
+    public void setValor(Valor valor) {
+        this.valor = valor;
+    }
+
+    public void setIdPersonagem(int idPersonagem) {
+        this.idPersonagem = idPersonagem;
+    }
+
+    public void setIdCampoFicha(int idCampoFicha) {
+        this.idCampoFicha = idCampoFicha;
+    }
 
     public TipoValor getTipoValor() {
-        return null;
+        if (valor == null) {
+            return null;
+        }
+        return valor.getTipoValor();
     }
 
 }

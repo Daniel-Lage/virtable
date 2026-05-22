@@ -5,17 +5,31 @@ public class SistemaRPG {
 
     private String nome;
 
-    public SistemaRPG(int id, String nome) {
+    private String descricao;
+
+    public SistemaRPG(int id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
+        this.descricao = descricao;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
+    public String getNome() {
         return nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }
