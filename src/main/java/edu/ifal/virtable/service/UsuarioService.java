@@ -1,3 +1,4 @@
+/*
 package edu.ifal.virtable.service;
 
 import edu.ifal.virtable.domain.Usuario;
@@ -22,7 +23,7 @@ public class UsuarioService extends CrudService<Usuario> {
         return buscarPorEmail(email) != null;
     }
 
-    public boolean atualizarNome(int idUsuario, String novoNome) {
+    public boolean atualizarNome(long idUsuario, String novoNome) {
         Usuario usuario = buscarPorId(idUsuario);
 
         if (usuario == null) {
@@ -33,7 +34,7 @@ public class UsuarioService extends CrudService<Usuario> {
         return true;
     }
 
-    public boolean atualizarEmail(int idUsuario, String novoEmail) {
+    public boolean atualizarEmail(long idUsuario, String novoEmail) {
         Usuario usuario = buscarPorId(idUsuario);
 
         if (usuario == null) {
@@ -58,3 +59,4 @@ public class UsuarioService extends CrudService<Usuario> {
         return usuario.getSenha().equals(senha);
     }
 }
+*/
