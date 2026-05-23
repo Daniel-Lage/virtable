@@ -2,11 +2,12 @@
 
 Projeto Java criado com Springboot
 
-API Rest de um
+API Rest de um sistema desenvolvido para auxiliar na execução e armazenar informações de campanhas de diversos sistemas RPG
 
 ## Configuração Local
 
 ### 1 - Instalar o Scoop
+
 Scoop é uma aplicação de linha de comando para instalar programas
 
 #### Execute no PowerShell
