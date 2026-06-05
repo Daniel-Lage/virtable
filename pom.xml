@@ -19,7 +19,7 @@
     <description>Projeto Virtable</description>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>26</java.version>
     </properties>
 
     <dependencies>
@@ -87,6 +87,12 @@
 			<scope>runtime</scope>
 		</dependency>
 		
+
+        <!-- Validação de dados -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

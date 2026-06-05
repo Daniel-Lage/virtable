@@ -1,5 +1,5 @@
 package edu.ifal.virtable.dto;
 
-public record AuthResponse(
-        String token
-) {}
+/// Interface selada para representar a resposta para reqests de autenticação, que pode ser sucesso ou erro
+public sealed interface AuthResponse permits AuthSuccessResponse, AuthErrorResponse {
+}
