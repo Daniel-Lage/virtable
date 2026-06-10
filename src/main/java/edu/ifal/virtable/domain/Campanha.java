@@ -1,15 +1,15 @@
 package edu.ifal.virtable.domain;
 
 public class Campanha {
-    private int id;
+    private Long id;
     /// Associado a Usuario.id
-    private int idMestre;
+    private Long idMestre;
     /// Associado a SistemaRPG.id
-    private int idSistemaRPG;
+    private Long idSistemaRPG;
 
     private String nome;
 
-    public Campanha(int id, int idMestre, int idSistemaRPG, String nome, Usuario mestre, SistemaRPG sistemaRPG,
+    public Campanha(Long id, Long idMestre, Long idSistemaRPG, String nome, Usuario mestre, SistemaRPG sistemaRPG,
             Usuario[] jogadores) {
         this.id = id;
         this.idMestre = idMestre;
@@ -17,15 +17,15 @@ public class Campanha {
         this.nome = nome;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getIdMestre() {
+    public Long getIdMestre() {
         return idMestre;
     }
 
-    public int getIdSistemaRPG() {
+    public Long getIdSistemaRPG() {
         return idSistemaRPG;
     }
 

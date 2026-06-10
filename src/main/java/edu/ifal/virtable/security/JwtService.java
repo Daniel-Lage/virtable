@@ -30,6 +30,10 @@ public class JwtService {
         return extrairClaims(token).getSubject();
     }
 
+    public String extrairId(String token) {
+        return extrairClaims(token).getId();
+    }
+
     public boolean tokenValido(String token, UserDetails userDetails) {
         String email = extrairEmail(token);
 

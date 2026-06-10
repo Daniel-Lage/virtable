@@ -2,9 +2,10 @@ package edu.ifal.virtable.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record RegisterRequest(
-                @NotBlank(message = "campo não pode ser vazio") String nome,
-                @Email(message = "campo deve ser um email válido") @NotBlank(message = "campo não pode ser vazio") String email,
-                @NotBlank(message = "campo não pode ser vazio") String senha) {
+        @NotNull(message = "Não deve ser nulo") @NotBlank(message = "Não deve estar em branco") String nome,
+        @NotNull(message = "Não deve ser nulo") @NotBlank(message = "Não deve estar em branco") @Email(message = "Deve ser um email válido") String email,
+        @NotNull(message = "Não deve ser nulo") @NotBlank(message = "Não deve estar em branco") String senha) {
 }

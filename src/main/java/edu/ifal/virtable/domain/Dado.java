@@ -1,26 +1,26 @@
 package edu.ifal.virtable.domain;
 
 public class Dado {
-    private int id;
+    private Long id;
     /// Associado a SistemaRPG.id
-    private int idSistemaRPG;
+    private Long idSistemaRPG;
 
     private String nome;
     /// Valor máximo do dado; ex.: 6 para um D6
     private int limit;
 
-    public Dado(int id, int idSistemaRPG, String nome, int limit) {
+    public Dado(Long id, Long idSistemaRPG, String nome, int limit) {
         this.id = id;
         this.idSistemaRPG = idSistemaRPG;
         this.nome = nome;
         this.limit = limit;
     }
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public int getIdSistemaRPG() {
+    public Long getIdSistemaRPG() {
         return this.idSistemaRPG;
     }
 

@@ -1,23 +1,23 @@
 package edu.ifal.virtable.domain;
 
 public abstract class OpcoesValor {
-    private int id;
+    private Long id;
     /// Associado a CampoFicha.id
-    private int idCampoFicha;
+    private Long idCampoFicha;
 
     /// Valor pode ser String ou int
     private Valor valor;
 
-    public OpcoesValor(int id, int idCampoFicha) {
+    public OpcoesValor(Long id, Long idCampoFicha) {
         this.id = id;
         this.idCampoFicha = idCampoFicha;
     }
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public int getIdCampoFicha() {
+    public Long getIdCampoFicha() {
         return idCampoFicha;
     }
 

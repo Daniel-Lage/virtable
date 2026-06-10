@@ -1,30 +1,30 @@
 package edu.ifal.virtable.domain;
 
 public class Personagem {
-    private int id;
+    private Long id;
     /// Associado a SistemaRPG.id
-    private int idSistema;
+    private Long idSistema;
     /// Associado a Usuario.id
-    private int idUsuario;
+    private Long idUsuario;
 
     private String nome;
 
-    public Personagem(int id, int idSistema, int idUsuario, String nome) {
+    public Personagem(Long id, Long idSistema, Long idUsuario, String nome) {
         this.id = id;
         this.idSistema = idSistema;
         this.idUsuario = idUsuario;
         this.nome = nome;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getIdSistema() {
+    public Long getIdSistema() {
         return idSistema;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 

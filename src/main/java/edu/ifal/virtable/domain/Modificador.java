@@ -1,30 +1,30 @@
 package edu.ifal.virtable.domain;
 
 public class Modificador {
-    int id;
+    Long id;
     /// Associado a ValorCampo.id
-    int idValorCampo;
+    Long idValorCampo;
     /// Associado a Dado.id
-    int idDado;
+    Long idDado;
 
     int multiplicador;
 
-    public Modificador(int id, int idValorCampo, int idDado, int multiplicador) {
+    public Modificador(Long id, Long idValorCampo, Long idDado, int multiplicador) {
         this.id = id;
         this.idValorCampo = idValorCampo;
         this.idDado = idDado;
         this.multiplicador = multiplicador;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getIdValorCampo() {
+    public Long getIdValorCampo() {
         return idValorCampo;
     }
 
-    public int getIdDado() {
+    public Long getIdDado() {
         return idDado;
     }
 

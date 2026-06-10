@@ -2,7 +2,6 @@ package edu.ifal.virtable.service;
 
 import edu.ifal.virtable.domain.Usuario;
 import edu.ifal.virtable.dto.AuthResponse;
-import edu.ifal.virtable.dto.AuthSuccessResponse;
 import edu.ifal.virtable.dto.LoginRequest;
 import edu.ifal.virtable.dto.RegisterRequest;
 import edu.ifal.virtable.repository.UsuarioRepository;
@@ -45,7 +44,7 @@ public class AuthService {
 
         String token = jwtService.gerarToken(usuario);
 
-        return new AuthSuccessResponse(token);
+        return new AuthResponse(token);
     }
 
     public AuthResponse login(@Valid LoginRequest request) {
@@ -62,6 +61,6 @@ public class AuthService {
 
         String token = jwtService.gerarToken(usuario);
 
-        return new AuthSuccessResponse(token);
+        return new AuthResponse(token);
     }
 }

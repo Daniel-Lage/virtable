@@ -1,48 +1,54 @@
 package edu.ifal.virtable.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
+import edu.ifal.virtable.dto.DeleteResponse;
+import edu.ifal.virtable.dto.ListResponse;
+import edu.ifal.virtable.dto.ReadResponse;
+import edu.ifal.virtable.dto.UpdateRequest;
+import edu.ifal.virtable.dto.UpdateResponse;
+import jakarta.validation.Valid;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+@Service
+@Validated
 public class CrudService<T> {
 
-    private List<T> dados = new ArrayList<>();
-    private Function<T, Integer> getId;
+    private final JpaRepository<T, Long> repository;
 
-    public CrudService(Function<T, Integer> getId) {
-        this.getId = getId;
+    public CrudService(
+            JpaRepository<T, Long> repository) {
+        this.repository = repository;
     }
 
-    public void criar(T objeto) {
-        dados.add(objeto);
+    public ListResponse<T> list() {
+        return new ListResponse<T>(repository.findAll());
     }
 
-    public List<T> listar() {
-        return dados;
+    public ReadResponse<T> read(Long id) {
+        T item = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        return new ReadResponse<T>(item);
     }
 
-    public T buscarPorId(int id) {
-        for (T objeto : dados) {
-            if (getId.apply(objeto) == id) {
-                return objeto;
-            }
+    public UpdateResponse<T> update(Long id, @Valid UpdateRequest<T> request) {
+        T itemAlterado = request.value();
+
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Usuário não encontrado");
         }
 
-        return null;
+        repository.save(itemAlterado);
+        return new UpdateResponse<T>(itemAlterado);
     }
 
-    public boolean atualizar(int id, T novoObjeto) {
-        for (int i = 0; i < dados.size(); i++) {
-            if (getId.apply(dados.get(i)) == id) {
-                dados.set(i, novoObjeto);
-                return true;
-            }
-        }
+    public DeleteResponse delete(Long id) {
+        T item = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return false;
-    }
-
-    public boolean remover(int id) {
-        return dados.removeIf(objeto -> getId.apply(objeto) == id);
+        repository.delete(item);
+        return new DeleteResponse(true);
     }
 }

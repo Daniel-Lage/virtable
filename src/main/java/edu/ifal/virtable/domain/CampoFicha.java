@@ -1,15 +1,15 @@
 package edu.ifal.virtable.domain;
 
 public class CampoFicha {
-    private int id;
+    private Long id;
     /// Associado a SistemaRPG.id
-    private int idSistemaRPG;
+    private Long idSistemaRPG;
 
     private String nome;
     private TipoCampo tipoCampo;
     private TipoValor tipoValor;
 
-    public CampoFicha(int id, int idSistemaRPG, String nome, TipoCampo tipoCampo, TipoValor tipoValor) {
+    public CampoFicha(Long id, Long idSistemaRPG, String nome, TipoCampo tipoCampo, TipoValor tipoValor) {
         this.id = id;
         this.idSistemaRPG = idSistemaRPG;
         this.nome = nome;
@@ -17,11 +17,11 @@ public class CampoFicha {
         this.tipoValor = tipoValor;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getIdSistemaRPG() {
+    public Long getIdSistemaRPG() {
         return idSistemaRPG;
     }
 
@@ -49,7 +49,7 @@ public class CampoFicha {
         this.tipoValor = tipoValor;
     }
 
-    public void setIdSistemaRPG(int idSistemaRPG) {
+    public void setIdSistemaRPG(Long idSistemaRPG) {
         this.idSistemaRPG = idSistemaRPG;
     }
 }

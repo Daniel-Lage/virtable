@@ -1,27 +1,27 @@
 package edu.ifal.virtable.domain;
 
 public class PersonagemCampanha {
-    private int id;
+    private Long id;
     /// Associado a Personagem.id
-    private int idPersonagem;
+    private Long idPersonagem;
     /// Associado a Campanha.id
-    private int idCampanha;
+    private Long idCampanha;
 
-    public PersonagemCampanha(int id, int idPersonagem, int idCampanha) {
+    public PersonagemCampanha(Long id, Long idPersonagem, Long idCampanha) {
         this.id = id;
         this.idPersonagem = idPersonagem;
         this.idCampanha = idCampanha;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getIdPersonagem() {
+    public Long getIdPersonagem() {
         return idPersonagem;
     }
 
-    public int getIdCampanha() {
+    public Long getIdCampanha() {
         return idCampanha;
     }
 

@@ -1,47 +1,47 @@
 package edu.ifal.virtable.domain;
 
 public class ValorCampo {
-    private int id;
+    private Long id;
     /// Associado a Personagem.id
-    private int idPersonagem;
+    private Long idPersonagem;
     /// Associado a CampoFicha.id
-    private int idCampoFicha;
+    private Long idCampoFicha;
 
     /// Valor pode ser do tipo ValorInt ou ValorString
     private Valor valor;
 
-    public ValorCampo(int id, int idPersonagem, int idCampoFicha, Valor valor) {
+    public ValorCampo(Long id, Long idPersonagem, Long idCampoFicha, Valor valor) {
         this.id = id;
         this.idPersonagem = idPersonagem;
         this.idCampoFicha = idCampoFicha;
         this.valor = valor;
     }
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public int getIdPersonagem() {
+    public Long getIdPersonagem() {
         return idPersonagem;
     }
 
-    public int getIdCampoFicha() {
+    public Long getIdCampoFicha() {
         return idCampoFicha;
     }
 
     public Valor getValor() {
         return valor;
     }
-    
+
     public void setValor(Valor valor) {
         this.valor = valor;
     }
 
-    public void setIdPersonagem(int idPersonagem) {
+    public void setIdPersonagem(Long idPersonagem) {
         this.idPersonagem = idPersonagem;
     }
 
-    public void setIdCampoFicha(int idCampoFicha) {
+    public void setIdCampoFicha(Long idCampoFicha) {
         this.idCampoFicha = idCampoFicha;
     }
 

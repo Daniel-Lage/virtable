@@ -2,7 +2,6 @@ package edu.ifal.virtable.security;
 
 import java.util.Collections;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,10 +24,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-        return new User(
+        return new CustomUserDetails(
+                usuario.getId(),
                 usuario.getEmail(),
                 usuario.getSenha(),
-                Collections.emptyList()
-        );
+                Collections.emptyList());
     }
 }
