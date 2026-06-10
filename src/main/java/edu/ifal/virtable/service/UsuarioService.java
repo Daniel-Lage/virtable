@@ -1,10 +1,10 @@
 package edu.ifal.virtable.service;
 
-import edu.ifal.virtable.domain.Usuario;
-import edu.ifal.virtable.repository.UsuarioRepository;
-
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import edu.ifal.virtable.domain.usuario.Usuario;
+import edu.ifal.virtable.repository.UsuarioRepository;
 
 @Service
 @Validated

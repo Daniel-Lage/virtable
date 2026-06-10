@@ -1,4 +1,7 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.factory;
+
+import edu.ifal.virtable.domain.valor.Valor;
+import edu.ifal.virtable.domain.valor.ValorInt;
 
 public class ValorIntFactory extends ValorFactory {
 

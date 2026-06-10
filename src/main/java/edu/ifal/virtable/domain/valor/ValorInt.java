@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.valor;
 
 public class ValorInt extends ValorBase<Integer> {
 

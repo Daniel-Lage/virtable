@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.campanha;
 
 public class UsuarioCampanha {
     private Long id;

@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.dado;
 
 public class Dado {
     private Long id;

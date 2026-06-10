@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.personagem;
 
 public class Personagem {
     private Long id;

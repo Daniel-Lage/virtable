@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.usuario;
 
 import jakarta.persistence.*;
 

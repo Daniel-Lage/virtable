@@ -1,4 +1,7 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.campanha;
+
+import edu.ifal.virtable.domain.sistema.SistemaRPG;
+import edu.ifal.virtable.domain.usuario.Usuario;
 
 public class Campanha {
     private Long id;

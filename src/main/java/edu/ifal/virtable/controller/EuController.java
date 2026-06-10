@@ -1,6 +1,6 @@
 package edu.ifal.virtable.controller;
 
-import edu.ifal.virtable.domain.Usuario;
+import edu.ifal.virtable.domain.usuario.Usuario;
 import edu.ifal.virtable.dto.DeleteResponse;
 import edu.ifal.virtable.dto.ReadResponse;
 import edu.ifal.virtable.dto.UpdateRequest;

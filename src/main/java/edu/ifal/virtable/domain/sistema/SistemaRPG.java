@@ -1,4 +1,4 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.sistema;
 
 public class SistemaRPG {
     private Long id;

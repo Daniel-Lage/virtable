@@ -1,4 +1,6 @@
-package edu.ifal.virtable.domain;
+package edu.ifal.virtable.domain.ficha;
+
+import edu.ifal.virtable.domain.valor.TipoValor;
 
 public class CampoFicha {
     private Long id;
