@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import edu.ifal.virtable.dto.CreateResponse;
 import edu.ifal.virtable.dto.DeleteResponse;
 import edu.ifal.virtable.dto.ListResponse;
 import edu.ifal.virtable.dto.ReadResponse;
@@ -17,9 +18,13 @@ public class CrudService<T> {
 
     private final JpaRepository<T, Long> repository;
 
-    public CrudService(
-            JpaRepository<T, Long> repository) {
+    public CrudService(JpaRepository<T, Long> repository) {
         this.repository = repository;
+    }
+
+    public CreateResponse<T> create(@Valid T item) {
+        T itemSalvo = repository.save(item);
+        return new CreateResponse<T>(itemSalvo);
     }
 
     public ListResponse<T> list() {
@@ -28,7 +33,7 @@ public class CrudService<T> {
 
     public ReadResponse<T> read(Long id) {
         T item = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
 
         return new ReadResponse<T>(item);
     }
@@ -37,7 +42,7 @@ public class CrudService<T> {
         T itemAlterado = request.value();
 
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Usuário não encontrado");
+            throw new RuntimeException("Item não encontrado");
         }
 
         repository.save(itemAlterado);
@@ -46,7 +51,7 @@ public class CrudService<T> {
 
     public DeleteResponse delete(Long id) {
         T item = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
 
         repository.delete(item);
         return new DeleteResponse(true);
