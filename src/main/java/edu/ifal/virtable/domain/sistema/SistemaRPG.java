@@ -1,16 +1,31 @@
 package edu.ifal.virtable.domain.sistema;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "sistemas_rpg")
 public class SistemaRPG {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O nome do sistema é obrigatório")
+    @Size(min = 2, max = 80, message = "O nome deve ter entre 2 e 80 caracteres")
     private String nome;
 
-    private String descricao;
+    public SistemaRPG() {
+    }
 
-    public SistemaRPG(Long id, String nome, String descricao) {
+    public SistemaRPG(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
     }
 
     public Long getId() {
@@ -21,15 +36,11 @@ public class SistemaRPG {
         return nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 }

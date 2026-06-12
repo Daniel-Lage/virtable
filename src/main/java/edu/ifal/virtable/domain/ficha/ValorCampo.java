@@ -1,58 +1,73 @@
 package edu.ifal.virtable.domain.ficha;
 
-import edu.ifal.virtable.domain.valor.TipoValor;
-import edu.ifal.virtable.domain.valor.Valor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "valores_campos")
 public class ValorCampo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    /// Associado a Personagem.id
-    private Long idPersonagem;
-    /// Associado a CampoFicha.id
+
+    // Associado a CampoFicha.id
+    @NotNull(message = "O campo da ficha é obrigatório")
     private Long idCampoFicha;
 
-    /// Valor pode ser do tipo ValorInt ou ValorString
-    private Valor valor;
+    // Associado a Personagem.id
+    @NotNull(message = "O personagem é obrigatório")
+    private Long idPersonagem;
 
-    public ValorCampo(Long id, Long idPersonagem, Long idCampoFicha, Valor valor) {
+    @NotBlank(message = "O valor é obrigatório")
+    @Size(max = 255, message = "O valor deve ter no máximo 255 caracteres")
+    private String valor;
+
+    public ValorCampo() {
+    }
+
+    public ValorCampo(Long id, Long idCampoFicha, Long idPersonagem, String valor) {
         this.id = id;
-        this.idPersonagem = idPersonagem;
         this.idCampoFicha = idCampoFicha;
+        this.idPersonagem = idPersonagem;
         this.valor = valor;
     }
 
     public Long getId() {
-        return this.id;
-    }
-
-    public Long getIdPersonagem() {
-        return idPersonagem;
+        return id;
     }
 
     public Long getIdCampoFicha() {
         return idCampoFicha;
     }
 
-    public Valor getValor() {
+    public Long getIdPersonagem() {
+        return idPersonagem;
+    }
+
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(Valor valor) {
-        this.valor = valor;
-    }
-
-    public void setIdPersonagem(Long idPersonagem) {
-        this.idPersonagem = idPersonagem;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setIdCampoFicha(Long idCampoFicha) {
         this.idCampoFicha = idCampoFicha;
     }
 
-    public TipoValor getTipoValor() {
-        if (valor == null) {
-            return null;
-        }
-        return valor.getTipoValor();
+    public void setIdPersonagem(Long idPersonagem) {
+        this.idPersonagem = idPersonagem;
     }
 
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
 }
