@@ -9,12 +9,8 @@ import edu.ifal.virtable.dto.UpdateResponse;
 import jakarta.validation.Valid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
-@Service
-@Validated
-public class CrudService<T> {
+public abstract class CrudService<T> {
 
     private final JpaRepository<T, Long> repository;
 
