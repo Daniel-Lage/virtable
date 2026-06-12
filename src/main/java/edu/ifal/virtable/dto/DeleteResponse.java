@@ -1,5 +1,5 @@
 package edu.ifal.virtable.dto;
 
-public record DeleteResponse(boolean result) {
+public record DeleteResponse(String result) {
 
 }

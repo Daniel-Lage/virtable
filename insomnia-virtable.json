@@ -1,0 +1,238 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-06-12T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:2026.1.0",
+  "resources": [
+    {
+      "_id": "wrk_virtable",
+      "_type": "workspace",
+      "name": "Virtable API"
+    },
+    {
+      "_id": "env_virtable",
+      "_type": "environment",
+      "parentId": "wrk_virtable",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8080"
+      }
+    },
+    {
+      "_id": "req_auth_cadastro",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Auth Cadastro",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/cadastro",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria\",\n  \"email\": \"maria@example.com\",\n  \"senha\": \"senha123\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_auth_login",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Auth Login",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"maria@example.com\",\n  \"senha\": \"senha123\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_usuarios_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios"
+    },
+    {
+      "_id": "req_usuarios_get",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Get Usuario by ID",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/{{ usuario_id }}",
+      "parameters": [
+        {
+          "name": "usuario_id",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "_id": "req_usuarios_update",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Update Usuario",
+      "method": "PUT",
+      "url": "{{ base_url }}/usuarios/{{ usuario_id }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria Atualizada\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_usuarios_delete",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Delete Usuario",
+      "method": "DELETE",
+      "url": "{{ base_url }}/usuarios/{{ usuario_id }}"
+    },
+    {
+      "_id": "req_personagens_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Personagens",
+      "method": "GET",
+      "url": "{{ base_url }}/personagens"
+    },
+    {
+      "_id": "req_personagens_post",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Create Personagem",
+      "method": "POST",
+      "url": "{{ base_url }}/personagens",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Guerreiro\",\n  \"idCampanha\": 1\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_personagens_get",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Get Personagem by ID",
+      "method": "GET",
+      "url": "{{ base_url }}/personagens/{{ personagem_id }}"
+    },
+    {
+      "_id": "req_personagens_update",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Update Personagem",
+      "method": "PUT",
+      "url": "{{ base_url }}/personagens/{{ personagem_id }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Guerreiro Atualizado\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_personagens_delete",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "Delete Personagem",
+      "method": "DELETE",
+      "url": "{{ base_url }}/personagens/{{ personagem_id }}"
+    },
+    {
+      "_id": "req_personagens_campanhas_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Personagens Campanhas",
+      "method": "GET",
+      "url": "{{ base_url }}/personagens-campanhas"
+    },
+    {
+      "_id": "req_sistemas_rpg_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Sistemas RPG",
+      "method": "GET",
+      "url": "{{ base_url }}/sistemas-rpg"
+    },
+    {
+      "_id": "req_usuarios_campanhas_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Usuarios Campanhas",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios-campanhas"
+    },
+    {
+      "_id": "req_valores_campos_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Valores Campos",
+      "method": "GET",
+      "url": "{{ base_url }}/valores-campos"
+    },
+    {
+      "_id": "req_campanhas_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Campanhas",
+      "method": "GET",
+      "url": "{{ base_url }}/campanhas"
+    },
+    {
+      "_id": "req_campos_ficha_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Campos Ficha",
+      "method": "GET",
+      "url": "{{ base_url }}/campos-ficha"
+    },
+    {
+      "_id": "req_dados_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Dados",
+      "method": "GET",
+      "url": "{{ base_url }}/dados"
+    },
+    {
+      "_id": "req_modificadores_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Modificadores",
+      "method": "GET",
+      "url": "{{ base_url }}/modificadores"
+    },
+    {
+      "_id": "req_opcoes_valores_list",
+      "_type": "request",
+      "parentId": "wrk_virtable",
+      "name": "List Opcoes Valores",
+      "method": "GET",
+      "url": "{{ base_url }}/opcoes-valores"
+    }
+  ]
+}

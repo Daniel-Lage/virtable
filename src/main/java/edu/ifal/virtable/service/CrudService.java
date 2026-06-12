@@ -1,48 +1,46 @@
 package edu.ifal.virtable.service;
 
-import edu.ifal.virtable.dto.CreateResponse;
 import edu.ifal.virtable.dto.DeleteResponse;
-import edu.ifal.virtable.dto.ListResponse;
-import edu.ifal.virtable.dto.ReadResponse;
-import edu.ifal.virtable.dto.UpdateRequest;
-import edu.ifal.virtable.dto.UpdateResponse;
 import jakarta.validation.Valid;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class CrudService<T> {
 
-    private final JpaRepository<T, Long> repository;
+    protected final JpaRepository<T, Long> repository;
 
     public CrudService(JpaRepository<T, Long> repository) {
         this.repository = repository;
+
     }
 
-    public CreateResponse<T> create(@Valid T item) {
+    public T create(@Valid T item) {
         T itemSalvo = repository.save(item);
-        return new CreateResponse<T>(itemSalvo);
+        return itemSalvo;
     }
 
-    public ListResponse<T> list() {
-        return new ListResponse<T>(repository.findAll());
+    public List<T> list() {
+        return repository.findAll();
     }
 
-    public ReadResponse<T> read(Long id) {
+    public T read(Long id) {
         T item = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Item não encontrado"));
 
-        return new ReadResponse<T>(item);
+        return item;
     }
 
-    public UpdateResponse<T> update(Long id, @Valid UpdateRequest<T> request) {
-        T itemAlterado = request.value();
+    public T update(Long id, @Valid T request) {
+        T itemAlterado = request;
 
         if (!repository.existsById(id)) {
             throw new RuntimeException("Item não encontrado");
         }
 
         repository.save(itemAlterado);
-        return new UpdateResponse<T>(itemAlterado);
+        return itemAlterado;
     }
 
     public DeleteResponse delete(Long id) {
@@ -50,6 +48,6 @@ public abstract class CrudService<T> {
                 .orElseThrow(() -> new RuntimeException("Item não encontrado"));
 
         repository.delete(item);
-        return new DeleteResponse(true);
+        return new DeleteResponse(String.format("Removeu %s com id %s", item.getClass(), id));
     }
 }

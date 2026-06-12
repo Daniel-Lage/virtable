@@ -1,13 +1,28 @@
 package edu.ifal.virtable.domain.dado;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "dados")
 public class Dado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    /// Associado a SistemaRPG.id
+
+    @NotNull
     private Long idSistemaRPG;
 
+    @NotBlank
     private String nome;
-    /// Valor máximo do dado; ex.: 6 para um D6
+
+    @NotNull
     private int limit;
+
+    public Dado() {
+    }
 
     public Dado(Long id, Long idSistemaRPG, String nome, int limit) {
         this.id = id;
@@ -20,16 +35,31 @@ public class Dado {
         return this.id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getIdSistemaRPG() {
         return this.idSistemaRPG;
+    }
+
+    public void setIdSistemaRPG(Long idSistemaRPG) {
+        this.idSistemaRPG = idSistemaRPG;
     }
 
     public String getName() {
         return this.nome;
     }
 
-    public int limit() {
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getLimit() {
         return this.limit;
     }
 
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 }

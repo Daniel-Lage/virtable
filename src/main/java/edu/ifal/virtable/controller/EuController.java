@@ -2,9 +2,6 @@ package edu.ifal.virtable.controller;
 
 import edu.ifal.virtable.domain.usuario.Usuario;
 import edu.ifal.virtable.dto.DeleteResponse;
-import edu.ifal.virtable.dto.ReadResponse;
-import edu.ifal.virtable.dto.UpdateRequest;
-import edu.ifal.virtable.dto.UpdateResponse;
 import edu.ifal.virtable.security.CustomUserDetails;
 import edu.ifal.virtable.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -24,14 +21,14 @@ public class EuController {
     }
 
     @GetMapping
-    public ResponseEntity<ReadResponse<Usuario>> read(@AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Usuario> read(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(usuarioService.read(userDetails.getId()));
     }
 
     @PutMapping
-    public ResponseEntity<UpdateResponse<Usuario>> update(
+    public ResponseEntity<Usuario> update(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody @Valid UpdateRequest<Usuario> request) {
+            @RequestBody @Valid Usuario request) {
         return ResponseEntity.ok(usuarioService.update(userDetails.getId(), request));
     }
 
