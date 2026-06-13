@@ -1,9 +1,18 @@
 package edu.ifal.virtable.domain.ficha;
 
-import jakarta.persistence.*;
+import edu.ifal.virtable.domain.sistema.SistemaRPG;
+import edu.ifal.virtable.domain.valor.TipoValor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import edu.ifal.virtable.domain.valor.TipoValor;
 
 @Entity
 @Table(name = "campos_ficha")
@@ -13,8 +22,9 @@ public class CampoFicha {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Long idSistemaRPG;
+    @ManyToOne
+    @JoinColumn(name = "id_sistema_rpg", nullable = false)
+    private SistemaRPG sistemaRPG;
 
     @NotBlank
     private String nome;
@@ -30,9 +40,9 @@ public class CampoFicha {
     public CampoFicha() {
     }
 
-    public CampoFicha(Long id, Long idSistemaRPG, String nome, TipoCampo tipoCampo, TipoValor tipoValor) {
+    public CampoFicha(Long id, SistemaRPG sistemaRPG, String nome, TipoCampo tipoCampo, TipoValor tipoValor) {
         this.id = id;
-        this.idSistemaRPG = idSistemaRPG;
+        this.sistemaRPG = sistemaRPG;
         this.nome = nome;
         this.tipoCampo = tipoCampo;
         this.tipoValor = tipoValor;
@@ -46,12 +56,12 @@ public class CampoFicha {
         this.id = id;
     }
 
-    public Long getIdSistemaRPG() {
-        return idSistemaRPG;
+    public SistemaRPG getSistemaRPG() {
+        return sistemaRPG;
     }
 
-    public void setIdSistemaRPG(Long idSistemaRPG) {
-        this.idSistemaRPG = idSistemaRPG;
+    public void setSistemaRPG(SistemaRPG sistemaRPG) {
+        this.sistemaRPG = sistemaRPG;
     }
 
     public String getNome() {

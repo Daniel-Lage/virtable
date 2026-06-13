@@ -13,4 +13,5 @@ public class CampanhaService extends CrudService<Campanha> {
     public CampanhaService(CampanhaRepository campanhaRepository) {
         super(campanhaRepository);
     }
+
 }

@@ -1,12 +1,14 @@
 package edu.ifal.virtable.domain.ficha;
 
+import edu.ifal.virtable.domain.personagem.Personagem;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -18,12 +20,14 @@ public class ValorCampo {
     private Long id;
 
     // Associado a CampoFicha.id
-    @NotNull(message = "O campo da ficha é obrigatório")
-    private Long idCampoFicha;
+    @ManyToOne
+    @JoinColumn(name = "id_campo_ficha", nullable = false)
+    private CampoFicha campoFicha;
 
     // Associado a Personagem.id
-    @NotNull(message = "O personagem é obrigatório")
-    private Long idPersonagem;
+    @ManyToOne
+    @JoinColumn(name = "id_personagem", nullable = false)
+    private Personagem personagem;
 
     @NotBlank(message = "O valor é obrigatório")
     @Size(max = 255, message = "O valor deve ter no máximo 255 caracteres")
@@ -32,10 +36,10 @@ public class ValorCampo {
     public ValorCampo() {
     }
 
-    public ValorCampo(Long id, Long idCampoFicha, Long idPersonagem, String valor) {
+    public ValorCampo(Long id, CampoFicha campoFicha, Personagem personagem, String valor) {
         this.id = id;
-        this.idCampoFicha = idCampoFicha;
-        this.idPersonagem = idPersonagem;
+        this.campoFicha = campoFicha;
+        this.personagem = personagem;
         this.valor = valor;
     }
 
@@ -43,12 +47,12 @@ public class ValorCampo {
         return id;
     }
 
-    public Long getIdCampoFicha() {
-        return idCampoFicha;
+    public CampoFicha getCampoFicha() {
+        return campoFicha;
     }
 
-    public Long getIdPersonagem() {
-        return idPersonagem;
+    public Personagem getPersonagem() {
+        return personagem;
     }
 
     public String getValor() {
@@ -59,12 +63,12 @@ public class ValorCampo {
         this.id = id;
     }
 
-    public void setIdCampoFicha(Long idCampoFicha) {
-        this.idCampoFicha = idCampoFicha;
+    public void setCampoFicha(CampoFicha campoFicha) {
+        this.campoFicha = campoFicha;
     }
 
-    public void setIdPersonagem(Long idPersonagem) {
-        this.idPersonagem = idPersonagem;
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
     }
 
     public void setValor(String valor) {

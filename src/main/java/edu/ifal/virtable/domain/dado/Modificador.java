@@ -1,6 +1,13 @@
 package edu.ifal.virtable.domain.dado;
 
-import jakarta.persistence.*;
+import edu.ifal.virtable.domain.ficha.ValorCampo;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -11,11 +18,13 @@ public class Modificador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Long idValorCampo;
+    @ManyToOne
+    @JoinColumn(name = "id_valor_campo", nullable = false)
+    private ValorCampo valorCampo;
 
-    @NotNull
-    private Long idDado;
+    @ManyToOne
+    @JoinColumn(name = "id_dado", nullable = false)
+    private Dado dado;
 
     @NotNull
     private int multiplicador;
@@ -23,10 +32,10 @@ public class Modificador {
     public Modificador() {
     }
 
-    public Modificador(Long id, Long idValorCampo, Long idDado, int multiplicador) {
+    public Modificador(Long id, ValorCampo valorCampo, Dado dado, int multiplicador) {
         this.id = id;
-        this.idValorCampo = idValorCampo;
-        this.idDado = idDado;
+        this.valorCampo = valorCampo;
+        this.dado = dado;
         this.multiplicador = multiplicador;
     }
 
@@ -38,20 +47,20 @@ public class Modificador {
         this.id = id;
     }
 
-    public Long getIdValorCampo() {
-        return idValorCampo;
+    public ValorCampo getValorCampo() {
+        return valorCampo;
     }
 
-    public void setIdValorCampo(Long idValorCampo) {
-        this.idValorCampo = idValorCampo;
+    public void setValorCampo(ValorCampo valorCampo) {
+        this.valorCampo = valorCampo;
     }
 
-    public Long getIdDado() {
-        return idDado;
+    public Dado getDado() {
+        return dado;
     }
 
-    public void setIdDado(Long idDado) {
-        this.idDado = idDado;
+    public void setDado(Dado dado) {
+        this.dado = dado;
     }
 
     public int getMultiplicador() {

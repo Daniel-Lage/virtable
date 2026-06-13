@@ -1,5 +1,6 @@
 package edu.ifal.virtable.domain.sistema;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class SistemaRPG {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_sistema_rpg")
     private Long id;
 
     @NotBlank(message = "O nome do sistema é obrigatório")

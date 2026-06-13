@@ -1,12 +1,15 @@
 package edu.ifal.virtable.domain.personagem;
 
+import edu.ifal.virtable.domain.sistema.SistemaRPG;
+import edu.ifal.virtable.domain.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -18,12 +21,14 @@ public class Personagem {
     private Long id;
 
     // Associado a SistemaRPG.id
-    @NotNull(message = "O sistema é obrigatório")
-    private Long idSistema;
+    @ManyToOne
+    @JoinColumn(name = "id_sistema_rpg", nullable = false)
+    private SistemaRPG sistemaRPG;
 
     // Associado a Usuario.id
-    @NotNull(message = "O usuário é obrigatório")
-    private Long idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     @NotBlank(message = "O nome do personagem é obrigatório")
     @Size(min = 2, max = 80, message = "O nome deve ter entre 2 e 80 caracteres")
@@ -32,10 +37,10 @@ public class Personagem {
     public Personagem() {
     }
 
-    public Personagem(Long id, Long idSistema, Long idUsuario, String nome) {
+    public Personagem(Long id, SistemaRPG sistemaRPG, Usuario usuario, String nome) {
         this.id = id;
-        this.idSistema = idSistema;
-        this.idUsuario = idUsuario;
+        this.sistemaRPG = sistemaRPG;
+        this.usuario = usuario;
         this.nome = nome;
     }
 
@@ -43,12 +48,12 @@ public class Personagem {
         return id;
     }
 
-    public Long getIdSistema() {
-        return idSistema;
+    public SistemaRPG getSistemaRPG() {
+        return sistemaRPG;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     public String getNome() {
@@ -59,12 +64,12 @@ public class Personagem {
         this.id = id;
     }
 
-    public void setIdSistema(Long idSistema) {
-        this.idSistema = idSistema;
+    public void setSistemaRPG(SistemaRPG sistemaRPG) {
+        this.sistemaRPG = sistemaRPG;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public void setNome(String nome) {

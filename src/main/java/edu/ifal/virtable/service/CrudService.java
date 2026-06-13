@@ -1,11 +1,11 @@
 package edu.ifal.virtable.service;
 
-import edu.ifal.virtable.dto.DeleteResponse;
-import jakarta.validation.Valid;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import edu.ifal.virtable.dto.DeleteResponse;
+import jakarta.validation.Valid;
 
 public abstract class CrudService<T> {
 

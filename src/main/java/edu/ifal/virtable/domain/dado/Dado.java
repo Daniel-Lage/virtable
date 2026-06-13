@@ -1,6 +1,13 @@
 package edu.ifal.virtable.domain.dado;
 
-import jakarta.persistence.*;
+import edu.ifal.virtable.domain.sistema.SistemaRPG;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,8 +19,9 @@ public class Dado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Long idSistemaRPG;
+    @ManyToOne
+    @JoinColumn(name = "id_sistema_rpg", nullable = false)
+    private SistemaRPG sistemaRPG;
 
     @NotBlank
     private String nome;
@@ -24,9 +32,9 @@ public class Dado {
     public Dado() {
     }
 
-    public Dado(Long id, Long idSistemaRPG, String nome, int limit) {
+    public Dado(Long id, SistemaRPG sistemaRPG, String nome, int limit) {
         this.id = id;
-        this.idSistemaRPG = idSistemaRPG;
+        this.sistemaRPG = sistemaRPG;
         this.nome = nome;
         this.limit = limit;
     }
@@ -39,12 +47,12 @@ public class Dado {
         this.id = id;
     }
 
-    public Long getIdSistemaRPG() {
-        return this.idSistemaRPG;
+    public SistemaRPG getSistemaRPG() {
+        return this.sistemaRPG;
     }
 
-    public void setIdSistemaRPG(Long idSistemaRPG) {
-        this.idSistemaRPG = idSistemaRPG;
+    public void setSistemaRPG(SistemaRPG sistemaRPG) {
+        this.sistemaRPG = sistemaRPG;
     }
 
     public String getName() {

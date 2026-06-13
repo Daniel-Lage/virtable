@@ -1,11 +1,13 @@
 package edu.ifal.virtable.domain.campanha;
 
+import edu.ifal.virtable.domain.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "usuarios_campanhas")
@@ -16,43 +18,45 @@ public class UsuarioCampanha {
     private Long id;
 
     // Associado a Usuario.id
-    @NotNull(message = "O usuário é obrigatório")
-    private Long idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     // Associado a Campanha.id
-    @NotNull(message = "A campanha é obrigatória")
-    private Long idCampanha;
+    @ManyToOne
+    @JoinColumn(name = "id_campanha", nullable = false)
+    private Campanha campanha;
 
     public UsuarioCampanha() {
     }
 
-    public UsuarioCampanha(Long id, Long idUsuario, Long idCampanha) {
+    public UsuarioCampanha(Long id, Usuario usuario, Campanha campanha) {
         this.id = id;
-        this.idUsuario = idUsuario;
-        this.idCampanha = idCampanha;
+        this.usuario = usuario;
+        this.campanha = campanha;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Long getIdCampanha() {
-        return idCampanha;
+    public Campanha getCampanha() {
+        return campanha;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public void setIdCampanha(Long idCampanha) {
-        this.idCampanha = idCampanha;
+    public void setCampanha(Campanha campanha) {
+        this.campanha = campanha;
     }
 }
