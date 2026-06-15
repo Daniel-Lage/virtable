@@ -27,7 +27,7 @@ scoop install java/openjdk
 
 ## Endpoints
 
-No arquivo `Insomnia.yaml` é possivel importar para aplicativos de Cliente de API requests genericos para cada uma das endpoints
+Com o arquivo `Insomnia.yaml` é possivel importar requests genericos para cada uma das endpoints em aplicativos de Cliente de API 
 
 Para executa-las corretamente é preciso definir duas variáveis de ambiente
 
