@@ -2,7 +2,7 @@ package edu.ifal.virtable.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.ifal.virtable.domain.usuario.Usuario;
+import edu.ifal.virtable.model.usuario.Usuario;
 
 import java.util.Optional;
 

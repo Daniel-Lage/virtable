@@ -3,7 +3,7 @@ package edu.ifal.virtable.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.ifal.virtable.domain.dado.Modificador;
+import edu.ifal.virtable.model.dado.Modificador;
 import edu.ifal.virtable.service.ModificadorService;
 
 @RestController

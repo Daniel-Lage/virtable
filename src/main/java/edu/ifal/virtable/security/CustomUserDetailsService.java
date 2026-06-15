@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import edu.ifal.virtable.domain.usuario.Usuario;
+import edu.ifal.virtable.model.usuario.Usuario;
 import edu.ifal.virtable.repository.UsuarioRepository;
 
 @Service

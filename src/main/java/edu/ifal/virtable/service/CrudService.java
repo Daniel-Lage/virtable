@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.ifal.virtable.dto.DeleteResponse;
+import edu.ifal.virtable.model.Item;
 import jakarta.validation.Valid;
 
-public abstract class CrudService<T> {
+public abstract class CrudService<T extends Item> {
 
     protected final JpaRepository<T, Long> repository;
 
@@ -33,14 +34,14 @@ public abstract class CrudService<T> {
     }
 
     public T update(Long id, @Valid T request) {
-        T itemAlterado = request;
-
         if (!repository.existsById(id)) {
             throw new RuntimeException("Item não encontrado");
         }
 
-        repository.save(itemAlterado);
-        return itemAlterado;
+        request.setId(id);
+
+        repository.save(request);
+        return request;
     }
 
     public DeleteResponse delete(Long id) {

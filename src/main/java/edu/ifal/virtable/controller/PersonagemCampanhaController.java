@@ -1,6 +1,6 @@
 package edu.ifal.virtable.controller;
 
-import edu.ifal.virtable.domain.campanha.PersonagemCampanha;
+import edu.ifal.virtable.model.campanha.PersonagemCampanha;
 import edu.ifal.virtable.service.PersonagemCampanhaService;
 import org.springframework.web.bind.annotation.*;
 

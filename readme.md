@@ -24,3 +24,14 @@ scoop install main/maven
 scoop bucket add java
 scoop install java/openjdk
 ```
+
+## Endpoints
+
+No arquivo `Insomnia.yaml` é possivel importar para aplicativos de Cliente de API requests genericos para cada uma das endpoints
+
+Para executa-las corretamente é preciso definir duas variáveis de ambiente
+
+| Nome     | Descrição                                      | Exemplo               |
+| :------- | :--------------------------------------------- | :-------------------- |
+| base_url | dominio onde o aplicativo esta sendo executado | http://localhost:8080 |
+| token    | string que o servidor retorna ao autenticar    | caracteres aleatorios |

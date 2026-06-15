@@ -1,9 +1,9 @@
 package edu.ifal.virtable.service;
 
-import edu.ifal.virtable.domain.usuario.Usuario;
 import edu.ifal.virtable.dto.AuthResponse;
 import edu.ifal.virtable.dto.LoginRequest;
 import edu.ifal.virtable.dto.RegisterRequest;
+import edu.ifal.virtable.model.usuario.Usuario;
 import edu.ifal.virtable.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

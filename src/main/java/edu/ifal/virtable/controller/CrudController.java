@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import edu.ifal.virtable.dto.DeleteResponse;
+import edu.ifal.virtable.model.Item;
 import edu.ifal.virtable.service.CrudService;
 import jakarta.validation.Valid;
 
-public abstract class CrudController<T> {
-    private final CrudService<T> service;
+public abstract class CrudController<T extends Item> {
+    protected final CrudService<T> service;
 
     public CrudController(CrudService<T> service) {
         this.service = service;
@@ -23,8 +24,8 @@ public abstract class CrudController<T> {
 
     @PostMapping
     public ResponseEntity<T> create(
-            @Valid @RequestBody T personagem) {
-        return ResponseEntity.ok(service.create(personagem));
+            @Valid @RequestBody T item) {
+        return ResponseEntity.ok(service.create(item));
     }
 
     @GetMapping

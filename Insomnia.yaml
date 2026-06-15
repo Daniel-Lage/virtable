@@ -1,0 +1,2443 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_82d69a9cb8124c2f869325fa3666fcf5
+  created: 1780079911714
+  modified: 1780079911714
+  description: ""
+collection:
+  - name: auth
+    meta:
+      id: fld_d28a04cc2efc472a8748d00bec8c4e30
+      created: 1781478232246
+      modified: 1781489269692
+      sortKey: -1781478382951
+      description: ""
+    children:
+      - url: "{{base_url}}/auth/cadastro"
+        name: Cadastro
+        meta:
+          id: req_489457eed15d44f4b2568f5037e18dd9
+          created: 1781477896366
+          modified: 1781503567023
+          isPrivate: false
+          description: ""
+          sortKey: -1781478238485
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Nome Exemplo",
+            	"email":"teste@exemplo.com",
+            	"senha":"senhaexemplo123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: Login
+        meta:
+          id: req_29bfb0e99bba447c8715019f44b6ec52
+          created: 1781488930161
+          modified: 1781503560653
+          isPrivate: false
+          description: ""
+          sortKey: -1775482882458
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"email@exemplo.com",
+            	"senha":"exemplosenha321"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: Login 2
+        meta:
+          id: req_875e5a408ba5415c903c8cfd6ea5b6fa
+          created: 1781504250692
+          modified: 1781504259280
+          isPrivate: false
+          description: ""
+          sortKey: -1772485204444.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"email2@exemplo.com",
+            	"senha":"exemplosenha321"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: sistema rpg
+    meta:
+      id: fld_70d5f814d78446fa9146863312d86e4e
+      created: 1781478382851
+      modified: 1781478439618
+      sortKey: -1781478382851
+      description: ""
+    children:
+      - url: "{{base_url}}/sistemas-rpg"
+        name: Listar
+        meta:
+          id: req_0061e3ebb3bd4e0a818b76b71aa9b109
+          created: 1781478400184
+          modified: 1781478460214
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg"
+        name: Criar
+        meta:
+          id: req_16a818aa1e444dea80eecc5f719aa2a8
+          created: 1781478609444
+          modified: 1781478696740
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Dungeons & Dragons"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1"
+        name: Atualizar
+        meta:
+          id: req_4a1db62a3cfc405d8901835459d6c464
+          created: 1781488987500
+          modified: 1781488994792
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Dungeons & Dragons"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1"
+        name: Buscar
+        meta:
+          id: req_4d2167125e86467ba2bdba5d468905a4
+          created: 1781489004246
+          modified: 1781489010987
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1"
+        name: Remover
+        meta:
+          id: req_130be88f27b24812ba3e6d12c17e3227
+          created: 1781489038644
+          modified: 1781489041437
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1/campanhas"
+        name: Listar Campanhas
+        meta:
+          id: req_cd4799b2b3a942848fe396b219bf0063
+          created: 1781512826551
+          modified: 1781512832178
+          isPrivate: false
+          description: ""
+          sortKey: -1781478359759.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1/campos-ficha"
+        name: Listar Campos Ficha
+        meta:
+          id: req_4fb637794e3e42cdb610f696eb13aad0
+          created: 1781512838840
+          modified: 1781512843038
+          isPrivate: false
+          description: ""
+          sortKey: -1781478358495.9766
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/sistemas-rpg/1/dados"
+        name: Listar Dados
+        meta:
+          id: req_9a26ac8c9bc947c0a271a5c6364d2d82
+          created: 1781512851249
+          modified: 1781512861705
+          isPrivate: false
+          description: ""
+          sortKey: -1781478357864.3398
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: dado
+    meta:
+      id: fld_9ed15132be904948adc89245e0351c0d
+      created: 1781489049120
+      modified: 1781489279863
+      sortKey: -1781478382863.5
+      description: ""
+    children:
+      - url: "{{base_url}}/dados"
+        name: Criar
+        meta:
+          id: req_46f2122f709b43bab48e9b033dc780e9
+          created: 1781489049120
+          modified: 1781491183500
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Teste de Percepção",
+            	"limit":20
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/dados/1"
+        name: Buscar
+        meta:
+          id: req_494b2a4b24a54cd38f4a29388cfb7dd9
+          created: 1781489049120
+          modified: 1781489064366
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/dados/1"
+        name: Remover
+        meta:
+          id: req_51198027c80d4dd89483956faa212e49
+          created: 1781489049120
+          modified: 1781489068040
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/dados"
+        name: Listar
+        meta:
+          id: req_8dfa5b27446a48d1812f667d0d86dcc4
+          created: 1781489049120
+          modified: 1781489062142
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/dados/1"
+        name: Atualizar
+        meta:
+          id: req_bbef297a4dc94807ab479e8f25852789
+          created: 1781489049120
+          modified: 1781491287313
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Dano da Adaga",
+            	"limit":4
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/dados/1/modificadores"
+        name: Listar Modificadores
+        meta:
+          id: req_b2a0756cec8d47b18aa13fd62c528dc6
+          created: 1781512681414
+          modified: 1781512712390
+          isPrivate: false
+          description: ""
+          sortKey: -1781478359759.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: campanha
+    meta:
+      id: fld_b2acc05766dd46eba9f0688349ff7348
+      created: 1781489110007
+      modified: 1781489272539
+      sortKey: -1781478382901
+      description: ""
+    children:
+      - url: "{{base_url}}/campanhas/1"
+        name: Atualizar
+        meta:
+          id: req_0488046abc444296a627e14b77341091
+          created: 1781489110007
+          modified: 1781498917203
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Campanha dos caras",
+            	"conteudo":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas/1"
+        name: Buscar
+        meta:
+          id: req_26b5272ecb5844fcac19db3198a48752
+          created: 1781489110007
+          modified: 1781489121265
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas"
+        name: Listar
+        meta:
+          id: req_682af058e1964047a18f8a53fc0048a3
+          created: 1781489110007
+          modified: 1781489119476
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas/1"
+        name: Remover
+        meta:
+          id: req_9e61ffca9cbe4308bc6af0bb84149af6
+          created: 1781489110007
+          modified: 1781489123620
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas"
+        name: Criar
+        meta:
+          id: req_de98b675d14f4b3698e9d1f450993366
+          created: 1781489110007
+          modified: 1781498885635
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Campanha dos crias",
+            	"conteudo":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas/1/usuarios"
+        name: Listar Usuarios
+        meta:
+          id: req_3823155423294bc38c2dde55bb7cf5b7
+          created: 1781512515117
+          modified: 1781512537774
+          isPrivate: false
+          description: ""
+          sortKey: -1781478379971.625
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campanhas/1/personagens"
+        name: Listar Personagens
+        meta:
+          id: req_1a98c3b5fc8e4611af5f78d84453aad8
+          created: 1781512546049
+          modified: 1781512552059
+          isPrivate: false
+          description: ""
+          sortKey: -1781478349653.0625
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: campo ficha
+    meta:
+      id: fld_abb2199af97d4f31b692b17124286748
+      created: 1781489141362
+      modified: 1781512590262
+      sortKey: -1781478382876
+      description: ""
+    children:
+      - url: "{{base_url}}/campos-ficha"
+        name: Criar
+        meta:
+          id: req_22c1e77c29fc434ebe68f97b77ac3ca6
+          created: 1781489141362
+          modified: 1781508430219
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Raça",
+            	"tipoCampo":"ONE",
+            	"tipoValor":"STR"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1"
+        name: Remover
+        meta:
+          id: req_288ae51cac1647c9acd6bb432ef5f73d
+          created: 1781489141362
+          modified: 1781489157356
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1"
+        name: Buscar
+        meta:
+          id: req_889996cb52d545ad95b025004929ec50
+          created: 1781489141362
+          modified: 1781489155720
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha"
+        name: Listar
+        meta:
+          id: req_8fdee0315e4a4660ba98d4fd54c54bb2
+          created: 1781489141362
+          modified: 1781489153940
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1"
+        name: Atualizar
+        meta:
+          id: req_d0f8523915cd464390ddac0de17ca381
+          created: 1781489141362
+          modified: 1781492118486
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Equipamento",
+            	"tipoCampo":"SET",
+            	"tipoValor":"STR"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1/valores-campo"
+        name: Listar Valores Campo
+        meta:
+          id: req_be3ba07b5a3d43c69ca689f5df81eea2
+          created: 1781512582717
+          modified: 1781512627309
+          isPrivate: false
+          description: ""
+          sortKey: -1781478359759.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1/opcoes-valor"
+        name: Listar Opcoes Valor
+        meta:
+          id: req_57971ef8705b438084dbb181ed03b18e
+          created: 1781512641128
+          modified: 1781512649000
+          isPrivate: false
+          description: ""
+          sortKey: -1781478354706.1562
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/campos-ficha/1/modificadores"
+        name: Listar Modificadores
+        meta:
+          id: req_14335d5f1da8496b9ba8cd4cc6e2e060
+          created: 1781512656996
+          modified: 1781512662231
+          isPrivate: false
+          description: ""
+          sortKey: -1781478352179.6094
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: eu
+    meta:
+      id: fld_565d663b442d4f93b2b227978376ecdf
+      created: 1781489173810
+      modified: 1781489282696
+      sortKey: -1781478382857.25
+      description: ""
+    children:
+      - url: "{{base_url}}/eu"
+        name: Atualizar
+        meta:
+          id: req_18c3d01110144583a5c7b4b3a9c80274
+          created: 1781489173810
+          modified: 1781491395951
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Novo Nome Exemplo",
+            	"email":"email2@exemplo.com",
+            	"senha":"exemplosenha321"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/eu"
+        name: Ler
+        meta:
+          id: req_78d8d29275fb47ee8b2deed383b25f2b
+          created: 1781489173810
+          modified: 1781489202021
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/eu"
+        name: Remover
+        meta:
+          id: req_a76c1c6d15fe47468debc5b0e487e6e6
+          created: 1781489173810
+          modified: 1781489211047
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/eu/personagens"
+        name: Listar Personagens
+        meta:
+          id: req_e5b3a31637a54f28bdb859b4dfabdf1d
+          created: 1781493770592
+          modified: 1781493776322
+          isPrivate: false
+          description: ""
+          sortKey: -1781478299122.125
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/eu/campanhas-mestradas"
+        name: Listar Campanhas Mestradas
+        meta:
+          id: req_f934bb6ad9d445779399df75c7cb307f
+          created: 1781493785428
+          modified: 1781493791549
+          isPrivate: false
+          description: ""
+          sortKey: -1781478289015.9375
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/eu/campanhas-participadas"
+        name: Listar Campanhas Participadas
+        meta:
+          id: req_c18c7d8deb354dcca712cee34143e53d
+          created: 1781512743591
+          modified: 1781512748787
+          isPrivate: false
+          description: ""
+          sortKey: -1781478283962.8438
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: modificador
+    meta:
+      id: fld_06210633a760482ebe490887bc81ab7c
+      created: 1781489225856
+      modified: 1781489285704
+      sortKey: -1781478382854.125
+      description: ""
+    children:
+      - url: "{{base_url}}/modificadores"
+        name: Criar
+        meta:
+          id: req_014046d65b2f480fb4de5e61d8465faa
+          created: 1781489225856
+          modified: 1781491640660
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"dado":{"id":1},
+            	"multiplicador":2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/modificadores/1"
+        name: Buscar
+        meta:
+          id: req_3bba41971cbe4edc8304d1dacac1e526
+          created: 1781489225856
+          modified: 1781489250840
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/modificadores/1"
+        name: Atualizar
+        meta:
+          id: req_5031a0863e7a4428a3c70fa3498070f7
+          created: 1781489225856
+          modified: 1781491679359
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"dado":{"id":1},
+            	"multiplicador":3
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/modificadores/1"
+        name: Remover
+        meta:
+          id: req_e320b3853816474ab170539f3d740989
+          created: 1781489225856
+          modified: 1781489253454
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/modificadores"
+        name: Listar
+        meta:
+          id: req_ed1614b78c88491cb5d3cb684d7aa09c
+          created: 1781489225856
+          modified: 1781489248296
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: opcao valor
+    meta:
+      id: fld_b2bb755b54a9443e81e10607f530c484
+      created: 1781489298202
+      modified: 1781512598787
+      sortKey: -1781478382852.5625
+      description: ""
+    children:
+      - url: "{{base_url}}/opcoes-valor"
+        name: Listar
+        meta:
+          id: req_08f480cda89149889e7a82f746a1251e
+          created: 1781489298202
+          modified: 1781489365595
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/opcoes-valor"
+        name: Criar
+        meta:
+          id: req_095d4a709d4e4d73bcd6562dcfaf27ad
+          created: 1781489298202
+          modified: 1781508517866
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"valor":"Humano"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/opcoes-valor/1"
+        name: Remover
+        meta:
+          id: req_a30521f1b45044dd8fed873a176d614c
+          created: 1781489298202
+          modified: 1781489371172
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/opcoes-valor/1"
+        name: Buscar
+        meta:
+          id: req_d8374a53372f4d5393806b5440d00bef
+          created: 1781489298202
+          modified: 1781489368361
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/opcoes-valor/1"
+        name: Atualizar
+        meta:
+          id: req_fd33f2aa4997485397dbb7ba91297fc4
+          created: 1781489298202
+          modified: 1781508526156
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"valor":"Gnomo"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: personagem campanha
+    meta:
+      id: fld_b5ffb29af41d4be0bd894f1efff5bc46
+      created: 1781489419327
+      modified: 1781512603571
+      sortKey: -1781478382851.7812
+      description: ""
+    children:
+      - url: "{{base_url}}/personagens-campanhas/1"
+        name: Atualizar
+        meta:
+          id: req_40d1e19d23734f5d846f39c35ce65d28
+          created: 1781489419327
+          modified: 1781493033920
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"personagem":{"id":1},
+            	"campanha":{"id":2}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens-campanhas"
+        name: Criar
+        meta:
+          id: req_9d133c648b924b74826c97cd6662b5fe
+          created: 1781489419327
+          modified: 1781493021027
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"personagem":{"id":1},
+            	"campanha":{"id":1}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens-campanhas/1"
+        name: Buscar
+        meta:
+          id: req_a0148e46a7d745d29309369cf2c28031
+          created: 1781489419327
+          modified: 1781489438398
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens-campanhas/1"
+        name: Remover
+        meta:
+          id: req_da6a270db7874eeb8436b48b598e99fa
+          created: 1781489419327
+          modified: 1781489441283
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens-campanhas"
+        name: Listar
+        meta:
+          id: req_daf2a6c5e0d84d18bf2f65fff0b17047
+          created: 1781489419327
+          modified: 1781489433928
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: personagem
+    meta:
+      id: fld_be9c7629ce204c2e8a1d55c9613acd51
+      created: 1781489453920
+      modified: 1781489453920
+      sortKey: -1781478382851.3906
+      description: ""
+    children:
+      - url: "{{base_url}}/personagens/1"
+        name: Atualizar
+        meta:
+          id: req_1402303c96a849ac852b3f3593efc01b
+          created: 1781489453920
+          modified: 1781497428005
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Drargna"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens/1"
+        name: Buscar
+        meta:
+          id: req_34e87ee77b9e4ecda1eb5ab24567a7a7
+          created: 1781489453920
+          modified: 1781489463851
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens/1"
+        name: Remover
+        meta:
+          id: req_6d3289e128ac47a9be078b8f69104ca3
+          created: 1781489453920
+          modified: 1781489465989
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens"
+        name: Listar
+        meta:
+          id: req_a916db9e4c1a45a983aba9da56d2de27
+          created: 1781489453920
+          modified: 1781489461474
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens"
+        name: Criar
+        meta:
+          id: req_db9cc189298348b19023f00442b6e9e3
+          created: 1781489453920
+          modified: 1781497441074
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"sistemaRPG":{"id":1},
+            	"nome":"Forries"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens/1/valores-campo"
+        name: Listar Valores Campo
+        meta:
+          id: req_83dd8d2a1a7446a38e9df21f06b4104c
+          created: 1781512779982
+          modified: 1781512787753
+          isPrivate: false
+          description: ""
+          sortKey: -1781478359759.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/personagens/1/campanhas"
+        name: Listar Campanhas
+        meta:
+          id: req_a97205edd7a94e0c8aad01aeb9f835fa
+          created: 1781512794816
+          modified: 1781512798441
+          isPrivate: false
+          description: ""
+          sortKey: -1781478357232.7031
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: usuario campanha
+    meta:
+      id: fld_d35fe3b218934224bb2a62274a4479a8
+      created: 1781489840642
+      modified: 1781512610300
+      sortKey: -1775397681036
+      description: ""
+    children:
+      - url: "{{base_url}}/usuarios-campanhas"
+        name: Listar
+        meta:
+          id: req_323942f82b9343028537efab1d8d7b54
+          created: 1781489840642
+          modified: 1781489858011
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios-campanhas/1"
+        name: Buscar
+        meta:
+          id: req_8186597e27a44523baa912020e70f67d
+          created: 1781489840642
+          modified: 1781489861311
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios-campanhas/1"
+        name: Atualizar
+        meta:
+          id: req_8842555f60ba42e89f81c51c226d158f
+          created: 1781489840642
+          modified: 1781493056311
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"usuario":{"id":1},
+            	"campanha":{"id":2}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios-campanhas/1"
+        name: Remover
+        meta:
+          id: req_b309c804d5b0489382e66ef82288f6a5
+          created: 1781489840642
+          modified: 1781489866166
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios-campanhas"
+        name: Criar
+        meta:
+          id: req_cc9bd25ff3d241b8b4b5ce640ba1d130
+          created: 1781489840642
+          modified: 1781493052875
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"usuario":{"id":1},
+            	"campanha":{"id":1}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: usuario
+    meta:
+      id: fld_c8d69e9a460e494e8fd16b255038bdcc
+      created: 1781489880755
+      modified: 1781489937490
+      sortKey: -1774637593309.125
+      description: ""
+    children:
+      - url: "{{base_url}}/usuarios/1"
+        name: Atualizar
+        meta:
+          id: req_1d890d891793436e89b6f47dfb655c1e
+          created: 1781489880755
+          modified: 1781491399927
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Novo Nome Exemplo",
+            	"email":"email2@exemplo.com",
+            	"senha":"exemplosenha321"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios/1"
+        name: Buscar
+        meta:
+          id: req_3cac53f7bf3f453aac6338ea5c1b4d93
+          created: 1781489880755
+          modified: 1781489896665
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios"
+        name: Listar
+        meta:
+          id: req_8842a28b9f9f4630875003e5a8d2b3da
+          created: 1781489880755
+          modified: 1781489892998
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios/1"
+        name: Remover
+        meta:
+          id: req_c68a208f55134ee6909c63d85ba28c8a
+          created: 1781489880755
+          modified: 1781489898589
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios/1/personagens"
+        name: Listar Personagens
+        meta:
+          id: req_90f56d85cdef4fbaa82dceefedb18ad8
+          created: 1781494147951
+          modified: 1781494167548
+          isPrivate: false
+          description: ""
+          sortKey: -1781478359759.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios/1/campanhas-mestradas"
+        name: Listar Campanhas Mestradas
+        meta:
+          id: req_20e58d97d06b4fcd8842d5229def25ef
+          created: 1781494150858
+          modified: 1781494171616
+          isPrivate: false
+          description: ""
+          sortKey: -1781478339546.875
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/usuarios/1/campanhas-participadas"
+        name: Listar Campanhas Participadas
+        meta:
+          id: req_cd224cdc717c4056b4da668bd6df373c
+          created: 1781512889606
+          modified: 1781512895219
+          isPrivate: false
+          description: ""
+          sortKey: -1781478329440.6875
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: valor do campo
+    meta:
+      id: fld_3061d48b5f094432a1c9b911ec7202fe
+      created: 1781489915263
+      modified: 1781489935983
+      sortKey: -1773877505582.25
+      description: ""
+    children:
+      - url: "{{base_url}}/valor-campo"
+        name: Listar
+        meta:
+          id: req_310517ba71a743bbad7150965cafe7a1
+          created: 1781489915263
+          modified: 1781497241869
+          isPrivate: false
+          description: ""
+          sortKey: -1781478400184
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/valor-campo"
+        name: Criar
+        meta:
+          id: req_5d92241e3c08491fb54b5b946a23661b
+          created: 1781489915263
+          modified: 1781497286509
+          isPrivate: false
+          description: ""
+          sortKey: -1781478436211
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"personagem":{"id":1},
+            	"valor":"Adaga"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/valor-campo/3"
+        name: Buscar
+        meta:
+          id: req_bc6a8dffe6d3422388f73eb8d80dbdee
+          created: 1781489915263
+          modified: 1781497825167
+          isPrivate: false
+          description: ""
+          sortKey: -1781478319334.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/valor-campo/3"
+        name: Atualizar
+        meta:
+          id: req_c360a970e06448078b9259e3ee488e3e
+          created: 1781489915263
+          modified: 1781497800062
+          isPrivate: false
+          description: ""
+          sortKey: -1781478418197.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"campoFicha":{"id":1},
+            	"personagem":{"id":1},
+            	"valor":2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/valor-campo/1"
+        name: Remover
+        meta:
+          id: req_c3dd8bd50403465f8d6938e228407287
+          created: 1781489915263
+          modified: 1781497247323
+          isPrivate: false
+          description: ""
+          sortKey: -1781478278909.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {{token}}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_6ec75b7a44762983636626636cbb30441c5a2d60
+    created: 1780079911717
+    modified: 1780080047111
+  cookies:
+    - id: 5f499b03-b953-4569-bbf8-bfcfcf453fef
+      key: JSESSIONID
+      value: D45C41D7062F6C841C262ED4E62E6670
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_6ec75b7a44762983636626636cbb30441c5a2d60
+    created: 1780079911716
+    modified: 1781509223938
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZUBleGVtcGxvLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE1MDkyMTgsImV4cCI6MTc4MTU5NTYxOH0.t_LCcY3JL0gXPA7YlkeepiDYuHpFMrHFkJceQVr6_MI
