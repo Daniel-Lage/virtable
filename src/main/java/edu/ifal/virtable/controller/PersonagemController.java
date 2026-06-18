@@ -53,7 +53,7 @@ public class PersonagemController extends ReadDeleteController<Personagem> {
 
     @GetMapping("/{id}/valores-campo")
     public ResponseEntity<List<ValorCampo>> listValoresCampo(@PathVariable Long id) {
-        return ResponseEntity.ok(valorCampoService.listByIdCampoFicha(id));
+        return ResponseEntity.ok(valorCampoService.listByIdPersonagem(id));
     }
 
     @GetMapping("/{id}/campanhas")

@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ValorCampoService extends CrudService<ValorCampo> {
     public List<ValorCampo> listByIdCampoFicha(Long id) {
         List<ValorCampo> todos = repository.findAll();
 
-        List<ValorCampo> filtrados = List.of();
+        List<ValorCampo> filtrados = new ArrayList<ValorCampo>();
 
         for (ValorCampo personagem : todos) {
             if (personagem.getCampoFicha().getId() == id) {
@@ -34,7 +35,7 @@ public class ValorCampoService extends CrudService<ValorCampo> {
     public List<ValorCampo> listByIdPersonagem(Long id) {
         List<ValorCampo> todos = repository.findAll();
 
-        List<ValorCampo> filtrados = List.of();
+        List<ValorCampo> filtrados = new ArrayList<ValorCampo>();
 
         for (ValorCampo personagem : todos) {
             if (personagem.getPersonagem().getId() == id) {

@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CampanhaService extends CrudService<Campanha> {
     public List<Campanha> listByIdMestre(Long id) {
         List<Campanha> todos = repository.findAll();
 
-        List<Campanha> filtrados = List.of();
+        List<Campanha> filtrados = new ArrayList<Campanha>();
 
         for (Campanha campanha : todos) {
             if (campanha.getMestre().getId() == id) {
@@ -34,7 +35,7 @@ public class CampanhaService extends CrudService<Campanha> {
     public List<Campanha> listByIdSistemaRPG(Long id) {
         List<Campanha> todos = repository.findAll();
 
-        List<Campanha> filtrados = List.of();
+        List<Campanha> filtrados = new ArrayList<Campanha>();
 
         for (Campanha campanha : todos) {
             if (campanha.getSistemaRPG().getId() == id) {

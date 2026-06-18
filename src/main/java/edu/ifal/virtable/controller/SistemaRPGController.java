@@ -38,7 +38,7 @@ public class SistemaRPGController extends CrudController<SistemaRPG> {
         return ResponseEntity.ok(campanhaService.listByIdSistemaRPG(id));
     }
 
-    @GetMapping("/{id}/campos_ficha")
+    @GetMapping("/{id}/campos-ficha")
     public ResponseEntity<List<CampoFicha>> listCamposFicha(@PathVariable Long id) {
         return ResponseEntity.ok(campoFichaService.listByIdSistemaRPG(id));
     }

@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ModificadorService extends CrudService<Modificador> {
     public List<Modificador> listByIdDado(Long id) {
         List<Modificador> todos = repository.findAll();
 
-        List<Modificador> filtrados = List.of();
+        List<Modificador> filtrados = new ArrayList<Modificador>();
 
         for (Modificador personagem : todos) {
             if (personagem.getDado().getId() == id) {
@@ -34,7 +35,7 @@ public class ModificadorService extends CrudService<Modificador> {
     public List<Modificador> listByIdCampoFicha(Long id) {
         List<Modificador> todos = repository.findAll();
 
-        List<Modificador> filtrados = List.of();
+        List<Modificador> filtrados = new ArrayList<Modificador>();
 
         for (Modificador personagem : todos) {
             if (personagem.getCampoFicha().getId() == id) {

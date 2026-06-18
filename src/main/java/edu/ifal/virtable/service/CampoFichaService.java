@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CampoFichaService extends CrudService<CampoFicha> {
     public List<CampoFicha> listByIdSistemaRPG(Long id) {
         List<CampoFicha> todos = repository.findAll();
 
-        List<CampoFicha> filtrados = List.of();
+        List<CampoFicha> filtrados = new ArrayList<CampoFicha>();
 
         for (CampoFicha personagem : todos) {
             if (personagem.getSistemaRPG().getId() == id) {

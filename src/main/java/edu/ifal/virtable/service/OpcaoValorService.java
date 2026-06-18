@@ -1,5 +1,6 @@
 package edu.ifal.virtable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class OpcaoValorService extends CrudService<OpcaoValor> {
     public List<OpcaoValor> listByIdCampoFicha(Long id) {
         List<OpcaoValor> todos = repository.findAll();
 
-        List<OpcaoValor> filtrados = List.of();
+        List<OpcaoValor> filtrados = new ArrayList<OpcaoValor>();
 
         for (OpcaoValor personagem : todos) {
             if (personagem.getCampoFicha().getId() == id) {
