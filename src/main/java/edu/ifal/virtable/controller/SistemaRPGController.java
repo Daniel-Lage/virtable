@@ -33,7 +33,7 @@ public class SistemaRPGController extends CrudController<SistemaRPG> {
         this.dadoService = dadoService;
     }
 
-    @GetMapping("/campanhas")
+    @GetMapping("/{id}/campanhas")
     public ResponseEntity<List<Campanha>> listCampanhas(@PathVariable Long id) {
         return ResponseEntity.ok(campanhaService.listByIdSistemaRPG(id));
     }

@@ -2,6 +2,7 @@ package edu.ifal.virtable.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,8 @@ import edu.ifal.virtable.repository.CampoFichaRepository;
 @Validated
 public class CampoFichaService extends CrudService<CampoFicha> {
 
-    public CampoFichaService(CampoFichaRepository campoFichaRepository) {
+    public CampoFichaService(
+            CampoFichaRepository campoFichaRepository) {
         super(campoFichaRepository);
     }
 
