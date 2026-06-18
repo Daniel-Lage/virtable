@@ -20,11 +20,9 @@ public class ValorCampoService extends CrudService<ValorCampo> {
     }
 
     public List<ValorCampo> listByIdCampoFicha(Long id) {
-        List<ValorCampo> filtrados = new ArrayList<>();
+        List<ValorCampo> filtrados = new ArrayList<ValorCampo>();
 
-        List<ValorCampo> filtrados = List.of();
-
-        for (ValorCampo personagem : todos) {
+        for (ValorCampo personagem : repository.findAll()) {
             if (personagem.getCampoFicha().getId() == id) {
 
                 filtrados.add(personagem);
@@ -35,14 +33,12 @@ public class ValorCampoService extends CrudService<ValorCampo> {
     }
 
     public List<ValorCampo> listByIdPersonagem(Long id) {
-        List<ValorCampo> filtrados = new ArrayList<>();
+        List<ValorCampo> filtrados = new ArrayList<ValorCampo>();
 
-        List<ValorCampo> filtrados = List.of();
+        for (ValorCampo valorCampo : repository.findAll()) {
+            if (valorCampo.getPersonagem().getId() == id) {
 
-        for (ValorCampo personagem : todos) {
-            if (personagem.getPersonagem().getId() == id) {
-
-                filtrados.add(personagem);
+                filtrados.add(valorCampo);
             }
         }
 

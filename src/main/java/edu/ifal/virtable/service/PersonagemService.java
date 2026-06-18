@@ -33,11 +33,9 @@ public class PersonagemService extends CrudService<Personagem> {
     }
 
     public List<Personagem> listByIdSistemaRPG(Long id) {
-        List<Personagem> todos = repository.findAll();
-
         List<Personagem> filtrados = new ArrayList<Personagem>();
 
-        for (Personagem personagem : todos) {
+        for (Personagem personagem : repository.findAll()) {
             if (personagem.getSistemaRPG().getId() == id) {
 
                 filtrados.add(personagem);

@@ -33,11 +33,9 @@ public class CampanhaService extends CrudService<Campanha> {
     }
 
     public List<Campanha> listByIdSistemaRPG(Long id) {
-        List<Campanha> todos = repository.findAll();
-
         List<Campanha> filtrados = new ArrayList<Campanha>();
 
-        for (Campanha campanha : todos) {
+        for (Campanha campanha : repository.findAll()) {
             if (campanha.getSistemaRPG().getId() == id) {
 
                 filtrados.add(campanha);

@@ -20,14 +20,12 @@ public class OpcaoValorService extends CrudService<OpcaoValor> {
     }
 
     public List<OpcaoValor> listByIdCampoFicha(Long id) {
-        List<OpcaoValor> todos = repository.findAll();
-
         List<OpcaoValor> filtrados = List.of();
 
-        for (OpcaoValor personagem : todos) {
-            if (personagem.getCampoFicha().getId() == id) {
+        for (OpcaoValor opcaoValor : repository.findAll()) {
+            if (opcaoValor.getCampoFicha().getId() == id) {
 
-                filtrados.add(personagem);
+                filtrados.add(opcaoValor);
             }
         }
 

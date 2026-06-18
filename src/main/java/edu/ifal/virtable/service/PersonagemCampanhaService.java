@@ -18,14 +18,12 @@ public class PersonagemCampanhaService extends CrudService<PersonagemCampanha> {
     }
 
     public List<PersonagemCampanha> listByIdPersonagem(Long id) {
-        List<PersonagemCampanha> todos = repository.findAll();
-
         List<PersonagemCampanha> filtrados = new ArrayList<PersonagemCampanha>();
 
-        for (PersonagemCampanha campanha : todos) {
-            if (campanha.getPersonagem().getId() == id) {
+        for (PersonagemCampanha personagemCampanha : repository.findAll()) {
+            if (personagemCampanha.getPersonagem().getId() == id) {
 
-                filtrados.add(campanha);
+                filtrados.add(personagemCampanha);
             }
         }
 
@@ -33,14 +31,12 @@ public class PersonagemCampanhaService extends CrudService<PersonagemCampanha> {
     }
 
     public List<PersonagemCampanha> listByIdCampanha(Long id) {
-        List<PersonagemCampanha> todos = repository.findAll();
-
         List<PersonagemCampanha> filtrados = new ArrayList<PersonagemCampanha>();
 
-        for (PersonagemCampanha campanha : todos) {
-            if (campanha.getCampanha().getId() == id) {
+        for (PersonagemCampanha personagemCampanha : repository.findAll()) {
+            if (personagemCampanha.getCampanha().getId() == id) {
 
-                filtrados.add(campanha);
+                filtrados.add(personagemCampanha);
             }
         }
 

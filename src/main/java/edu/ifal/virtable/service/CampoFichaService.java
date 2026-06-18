@@ -20,14 +20,12 @@ public class CampoFichaService extends CrudService<CampoFicha> {
     }
 
     public List<CampoFicha> listByIdSistemaRPG(Long id) {
-        List<CampoFicha> todos = repository.findAll();
-
         List<CampoFicha> filtrados = new ArrayList<CampoFicha>();
 
-        for (CampoFicha personagem : todos) {
-            if (personagem.getSistemaRPG().getId() == id) {
+        for (CampoFicha campoFicha : repository.findAll()) {
+            if (campoFicha.getSistemaRPG().getId() == id) {
 
-                filtrados.add(personagem);
+                filtrados.add(campoFicha);
             }
         }
 

@@ -18,14 +18,12 @@ public class DadoService extends CrudService<Dado> {
     }
 
     public List<Dado> listByIdSistemaRPG(Long id) {
-        List<Dado> todos = repository.findAll();
-
         List<Dado> filtrados = new ArrayList<Dado>();
 
-        for (Dado personagem : todos) {
-            if (personagem.getSistemaRPG().getId() == id) {
+        for (Dado dado : repository.findAll()) {
+            if (dado.getSistemaRPG().getId() == id) {
 
-                filtrados.add(personagem);
+                filtrados.add(dado);
             }
         }
 
