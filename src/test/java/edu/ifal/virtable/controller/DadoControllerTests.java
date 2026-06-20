@@ -31,209 +31,216 @@ import edu.ifal.virtable.service.ModificadorService;
 @DisplayName("DadoController - Testes unitários")
 class DadoControllerTests {
 
-    @Mock
-    private DadoService dadoService;
+        @Mock
+        private DadoService dadoService;
 
-    @Mock
-    private ModificadorService modificadorService;
+        @Mock
+        private ModificadorService modificadorService;
 
-    private MockMvc mockMvc;
+        private MockMvc mockMvc;
 
-    @BeforeEach
-    void setup() {
-        DadoController controller = new DadoController(
-                dadoService,
-                modificadorService
-        );
+        @BeforeEach
+        void setup() {
+                DadoController controller = new DadoController(
+                                dadoService,
+                                modificadorService);
 
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
-                .build();
-    }
+                mockMvc = MockMvcBuilders
+                                .standaloneSetup(controller)
+                                .build();
+        }
 
-    private Dado criarDado(
-            Long id,
-            String nome,
-            int limite
-    ) {
-        Dado dado = new Dado();
+        private Dado criarDado(
+                        Long id,
+                        String nome,
+                        int limite) {
+                Dado dado = new Dado();
 
-        dado.setId(id);
-        dado.setNome(nome);
-        dado.setLimit(limite);
+                dado.setId(id);
+                dado.setNome(nome);
+                dado.setLimit(limite);
 
-        return dado;
-    }
+                return dado;
+        }
 
-    @Test
-    @DisplayName("Deve criar um dado válido")
-    void testCriarDadoValido() throws Exception {
+        @Test
+        @DisplayName("Deve criar um dado válido")
+        void testCriarDadoValido() throws Exception {
 
-        when(dadoService.create(any(Dado.class)))
-                .thenAnswer(invocation -> {
-                    Dado dado = invocation.getArgument(0);
-                    dado.setId(1L);
+                when(dadoService.create(any(Dado.class)))
+                                .thenAnswer(invocation -> {
+                                        Dado dado = invocation.getArgument(0);
+                                        dado.setId(1L);
 
-                    return dado;
-                });
+                                        return dado;
+                                });
 
-        String corpo = """
-                {
-                  "nome": "d20",
-                  "limit": 20
-                }
-                """;
+                String corpo = """
+                                {
+                                  "nome": "d20",
+                                  "limite": 20
+                                }
+                                """;
 
-        mockMvc.perform(
-                        post("/dados")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("d20"))
-                .andExpect(jsonPath("$.limit").value(20));
+                mockMvc.perform(
+                                post("/dados")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.name").value("d20"))
+                                .andExpect(jsonPath("$.limite").value(20));
 
-        verify(dadoService).create(any(Dado.class));
-    }
+                verify(dadoService).create(any(Dado.class));
+        }
 
-    @Test
-    @DisplayName("Não deve criar dado com nome em branco")
-    void testCriarDadoNomeEmBranco() throws Exception {
+        @Test
+        @DisplayName("Não deve criar dado com nome em branco")
+        void testCriarDadoNomeEmBranco() throws Exception {
 
-        String corpo = """
-                {
-                  "nome": "",
-                  "limit": 20
-                }
-                """;
+                String corpo = """
+                                {
+                                  "nome": "",
+                                  "limite": 20
+                                }
+                                """;
 
-        mockMvc.perform(
-                        post("/dados")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(
+                                post("/dados")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("Deve listar os dados")
-    void testListarDados() throws Exception {
+        @Test
+        @DisplayName("NÃ£o deve criar dado com limite nulo")
+        void testCriarDadoLimiteNulo() throws Exception {
 
-        Dado dado1 = criarDado(1L, "d20", 20);
-        Dado dado2 = criarDado(2L, "d6", 6);
+                String corpo = """
+                                {
+                                  "nome": "d20",
+                                  "limite": null
+                                }
+                                """;
 
-        when(dadoService.list())
-                .thenReturn(List.of(dado1, dado2));
+                mockMvc.perform(
+                                post("/dados")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isBadRequest());
+        }
 
-        mockMvc.perform(get("/dados"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].name").value("d20"))
-                .andExpect(jsonPath("$[0].limit").value(20))
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].name").value("d6"))
-                .andExpect(jsonPath("$[1].limit").value(6));
+        @Test
+        @DisplayName("Deve listar os dados")
+        void testListarDados() throws Exception {
 
-        verify(dadoService).list();
-    }
+                Dado dado1 = criarDado(1L, "d20", 20);
+                Dado dado2 = criarDado(2L, "d6", 6);
 
-    @Test
-    @DisplayName("Deve buscar um dado pelo ID")
-    void testLerDadoValido() throws Exception {
+                when(dadoService.list())
+                                .thenReturn(List.of(dado1, dado2));
 
-        Dado dado = criarDado(1L, "d20", 20);
+                mockMvc.perform(get("/dados"))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$[0].id").value(1))
+                                .andExpect(jsonPath("$[0].name").value("d20"))
+                                .andExpect(jsonPath("$[0].limite").value(20))
+                                .andExpect(jsonPath("$[1].id").value(2))
+                                .andExpect(jsonPath("$[1].name").value("d6"))
+                                .andExpect(jsonPath("$[1].limite").value(6));
 
-        when(dadoService.read(1L))
-                .thenReturn(dado);
+                verify(dadoService).list();
+        }
 
-        mockMvc.perform(get("/dados/{id}", 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("d20"))
-                .andExpect(jsonPath("$.limit").value(20));
+        @Test
+        @DisplayName("Deve buscar um dado pelo ID")
+        void testLerDadoValido() throws Exception {
 
-        verify(dadoService).read(1L);
-    }
+                Dado dado = criarDado(1L, "d20", 20);
 
-    @Test
-    @DisplayName("Deve atualizar um dado")
-    void testAtualizarDadoValido() throws Exception {
+                when(dadoService.read(1L))
+                                .thenReturn(dado);
 
-        when(dadoService.update(eq(1L), any(Dado.class)))
-                .thenAnswer(invocation -> {
-                    Long id = invocation.getArgument(0);
-                    Dado dado = invocation.getArgument(1);
+                mockMvc.perform(get("/dados/{id}", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.name").value("d20"))
+                                .andExpect(jsonPath("$.limite").value(20));
 
-                    dado.setId(id);
+                verify(dadoService).read(1L);
+        }
 
-                    return dado;
-                });
+        @Test
+        @DisplayName("Deve atualizar um dado")
+        void testAtualizarDadoValido() throws Exception {
 
-        String corpo = """
-                {
-                  "nome": "d12",
-                  "limit": 12
-                }
-                """;
+                when(dadoService.update(eq(1L), any(Dado.class)))
+                                .thenAnswer(invocation -> {
+                                        Long id = invocation.getArgument(0);
+                                        Dado dado = invocation.getArgument(1);
 
-        mockMvc.perform(
-                        put("/dados/{id}", 1L)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("d12"))
-                .andExpect(jsonPath("$.limit").value(12));
+                                        dado.setId(id);
 
-        verify(dadoService).update(
-                eq(1L),
-                any(Dado.class)
-        );
-    }
+                                        return dado;
+                                });
 
-    @Test
-    @DisplayName("Deve remover um dado")
-    void testRemoverDadoValido() throws Exception {
+                String corpo = """
+                                {
+                                  "nome": "d12",
+                                  "limite": 12
+                                }
+                                """;
 
-        when(dadoService.delete(1L))
-                .thenReturn(null);
+                mockMvc.perform(
+                                put("/dados/{id}", 1L)
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.name").value("d12"))
+                                .andExpect(jsonPath("$.limite").value(12));
 
-        mockMvc.perform(delete("/dados/{id}", 1L))
-                .andExpect(status().isOk());
+                verify(dadoService).update(
+                                eq(1L),
+                                any(Dado.class));
+        }
 
-        verify(dadoService).delete(1L);
-    }
+        @Test
+        @DisplayName("Deve remover um dado")
+        void testRemoverDadoValido() throws Exception {
 
-    @Test
-    @DisplayName("Deve listar os modificadores de um dado")
-    void testListarModificadores() throws Exception {
+                when(dadoService.delete(1L))
+                                .thenReturn(null);
 
-        when(modificadorService.listByIdDado(1L))
-                .thenReturn(List.of());
+                mockMvc.perform(delete("/dados/{id}", 1L))
+                                .andExpect(status().isOk());
 
-        mockMvc.perform(get("/dados/{id}/modificadores", 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                verify(dadoService).delete(1L);
+        }
 
-        verify(modificadorService).listByIdDado(1L);
-    }
+        @Test
+        @DisplayName("Deve listar os modificadores de um dado")
+        void testListarModificadores() throws Exception {
+
+                when(modificadorService.listByIdDado(1L))
+                                .thenReturn(List.of());
+
+                mockMvc.perform(get("/dados/{id}/modificadores", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$").isEmpty());
+
+                verify(modificadorService).listByIdDado(1L);
+        }
 }

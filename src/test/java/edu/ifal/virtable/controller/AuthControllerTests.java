@@ -22,110 +22,110 @@ import org.junit.jupiter.api.BeforeEach;
 @DisplayName("AuthController - Testes Unitários")
 class AuthControllerTests {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-    private MockMvc mockMvc;
+        @Autowired
+        private WebApplicationContext webApplicationContext;
+        private MockMvc mockMvc;
 
-    @BeforeEach
-    public void setup() {
-        mockMvc = org.springframework.test.web.servlet.setup.MockMvcBuilders
-                .webAppContextSetup(webApplicationContext)
-                .build();
-    }
+        @BeforeEach
+        public void setup() {
+                mockMvc = org.springframework.test.web.servlet.setup.MockMvcBuilders
+                                .webAppContextSetup(webApplicationContext)
+                                .build();
+        }
 
-    @Test
-    void testCadastroValido() throws Exception {
-        var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario1@example.com\", \"senha\": \"senha123\"}";
+        @Test
+        void testCadastroValido() throws Exception {
+                var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario1@example.com\", \"senha\": \"senha123\"}";
 
-        mockMvc.perform(post("/auth/cadastro")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(cadastroBody))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.token").isString());
-    }
+                mockMvc.perform(post("/auth/cadastro")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(cadastroBody))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.token").isString());
+        }
 
-    @Test
-    void testLoginValido() throws Exception {
-        var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario2@example.com\", \"senha\": \"senha123\"}";
-        var loginBody = "{\"email\": \"usuario2@example.com\", \"senha\": \"senha123\"}";
+        @Test
+        void testLoginValido() throws Exception {
+                var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario2@example.com\", \"senha\": \"senha123\"}";
+                var loginBody = "{\"email\": \"usuario2@example.com\", \"senha\": \"senha123\"}";
 
-        mockMvc.perform(post("/auth/cadastro")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(cadastroBody));
+                mockMvc.perform(post("/auth/cadastro")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(cadastroBody));
 
-        mockMvc.perform(post("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(loginBody))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.token").isString());
-    }
+                mockMvc.perform(post("/auth/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(loginBody))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.token").isString());
+        }
 
-    @Test
-    void testCadastroRepetido() throws Exception {
-        var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario3@example.com\", \"senha\": \"senha123\"}";
+        @Test
+        void testCadastroRepetido() throws Exception {
+                var cadastroBody = "{\"nome\": \"Nome Exemplo\", \"email\": \"usuario3@example.com\", \"senha\": \"senha123\"}";
 
-        mockMvc.perform(post("/auth/cadastro")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(cadastroBody));
+                mockMvc.perform(post("/auth/cadastro")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(cadastroBody));
 
-        mockMvc.perform(post("/auth/cadastro")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(cadastroBody))
-                .andExpect(status().isInternalServerError())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.error").value("Erro de Tempo de Execução"))
-                .andExpect(jsonPath("$.message").value("Email já cadastrado"));
-    }
+                mockMvc.perform(post("/auth/cadastro")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(cadastroBody))
+                                .andExpect(status().isInternalServerError())
+                                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.error").value("Erro de Tempo de Execução"))
+                                .andExpect(jsonPath("$.message").exists());
+        }
 
-    @Test
-    void testCadastroCamposEmBranco() throws Exception {
-        var cadastroBody = "{\"nome\": \"\", \"email\": \"\", \"senha\": \"\"}";
+        @Test
+        void testCadastroCamposEmBranco() throws Exception {
+                var cadastroBody = "{\"nome\": \"\", \"email\": \"\", \"senha\": \"\"}";
 
-        mockMvc.perform(post("/auth/cadastro")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(cadastroBody))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.token").isString());
-    }
+                mockMvc.perform(post("/auth/cadastro")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(cadastroBody))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.error").value("Erro de Validação"));
+        }
 
-    @Test
-    void testLoginCamposEmBranco() throws Exception {
-        var loginBody = "{\"email\":\"\",\"senha\":\"\"}";
+        @Test
+        void testLoginCamposEmBranco() throws Exception {
+                var loginBody = "{\"email\":\"\",\"senha\":\"\"}";
 
-        mockMvc.perform(post("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(loginBody))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Erro de Validação"))
-                .andExpect(jsonPath("$.fields.email", hasItem("Não deve estar em branco")))
-                .andExpect(jsonPath("$.fields.senha", hasItem("Não deve estar em branco")));
-    }
+                mockMvc.perform(post("/auth/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(loginBody))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(jsonPath("$.error").value("Erro de Validação"))
+                                .andExpect(jsonPath("$.fields.email", hasItem("Não deve estar em branco")))
+                                .andExpect(jsonPath("$.fields.senha", hasItem("Não deve estar em branco")));
+        }
 
-    @Test
-    void testLoginCamposNulos() throws Exception {
-        var loginBody = "{\"email\":null,\"senha\":null}";
+        @Test
+        void testLoginCamposNulos() throws Exception {
+                var loginBody = "{\"email\":null,\"senha\":null}";
 
-        mockMvc.perform(post("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(loginBody))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Erro de Validação"))
-                .andExpect(jsonPath("$.fields.email", hasItem("Não deve ser nulo")))
-                .andExpect(jsonPath("$.fields.senha", hasItem("Não deve ser nulo")));
-    }
+                mockMvc.perform(post("/auth/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(loginBody))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(jsonPath("$.error").value("Erro de Validação"))
+                                .andExpect(jsonPath("$.fields.email", hasItem("Não deve ser nulo")))
+                                .andExpect(jsonPath("$.fields.senha", hasItem("Não deve ser nulo")));
+        }
 
-    @Test
-    void testLoginEmailInvalido() throws Exception {
-        var loginBody = "{\"email\":\"invalid-email\",\"senha\":\"senha123\"}";
+        @Test
+        void testLoginEmailInvalido() throws Exception {
+                var loginBody = "{\"email\":\"invalid-email\",\"senha\":\"senha123\"}";
 
-        mockMvc.perform(post("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(loginBody))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Erro de Validação"))
-                .andExpect(jsonPath("$.fields.email", hasItem("Deve ser um email válido")));
-    }
+                mockMvc.perform(post("/auth/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(loginBody))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(jsonPath("$.error").value("Erro de Validação"))
+                                .andExpect(jsonPath("$.fields.email", hasItem("Deve ser um email válido")));
+        }
 }

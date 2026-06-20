@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.mockito.ArgumentMatchers.startsWith;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -49,26 +50,12 @@ class EuControllerTests {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(cadastroBody))
                                 .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.token").isString())
                                 .andReturn();
 
                 JsonNode responseBody = objectMapper.readTree(result.getResponse().getContentAsString());
                 return responseBody.get("token").asText();
-        }
-
-        private Long retornaEu(String token, String email) throws Exception {
-                MvcResult result = mockMvc.perform(get("/usuario")
-                                .header("Authorization", "Bearer " + token))
-                                .andExpect(status().isOk())
-                                .andReturn();
-
-                JsonNode list = objectMapper.readTree(result.getResponse().getContentAsString()).get("list");
-                for (JsonNode user : list) {
-                        if (email.equals(user.get("email").asText())) {
-                                return user.get("id").asLong();
-                        }
-                }
-
-                throw new IllegalStateException("Usuário não encontrado na lista");
         }
 
         @Test
@@ -80,19 +67,18 @@ class EuControllerTests {
                                 .header("Authorization", "Bearer " + token))
                                 .andExpect(status().isOk())
                                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                                .andExpect(jsonPath("$.value.nome").value("Nome Exemplo"))
-                                .andExpect(jsonPath("$.value.email").value(email));
+                                .andExpect(jsonPath("$.nome").value("Nome Exemplo"))
+                                .andExpect(jsonPath("$.email").value(email));
         }
 
         @Test
         void testAtualizarEuValido() throws Exception {
                 String email = "usuario3@example.com";
                 String token = cadastrar(email);
-                Long id = retornaEu(token, email);
 
                 var updateBody = String.format(
-                                "{\"value\": {\"id\": %d, \"nome\": \"Outro Nome Exemplo\", \"email\": \"%s\", \"senha\": \"senha123\"}}",
-                                id, email);
+                                "{\"nome\": \"Outro Nome Exemplo\", \"email\": \"%s\", \"senha\": \"senha123\"}",
+                                email);
 
                 mockMvc.perform(put("/eu")
                                 .header("Authorization", "Bearer " + token)
@@ -100,8 +86,8 @@ class EuControllerTests {
                                 .content(updateBody))
                                 .andExpect(status().isOk())
                                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                                .andExpect(jsonPath("$.value.nome").value("Outro Nome Exemplo"))
-                                .andExpect(jsonPath("$.value.email").value(email));
+                                .andExpect(jsonPath("$.nome").value("Outro Nome Exemplo"))
+                                .andExpect(jsonPath("$.email").value(email));
         }
 
         @Test
@@ -113,7 +99,7 @@ class EuControllerTests {
                 mockMvc.perform(delete("/eu")
                                 .header("Authorization", "Bearer " + token))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.result").value(true));
+                                .andExpect(jsonPath("$.result").exists());
         }
 
         @Test

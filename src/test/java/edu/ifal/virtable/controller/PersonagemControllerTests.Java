@@ -77,7 +77,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve criar um personagem")
-    void deveCriarPersonagem() {
+    void testCriarPersonagemValido() {
         Personagem personagem = criarPersonagem(null, "Arthas");
         Personagem personagemCriado = criarPersonagem(1L, "Arthas");
 
@@ -97,7 +97,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve atualizar um personagem")
-    void deveAtualizarPersonagem() {
+    void testAtualizarPersonagemValido() {
         Personagem personagem = criarPersonagem(null, "Arthas Atualizado");
         Personagem personagemAtualizado = criarPersonagem(1L, "Arthas Atualizado");
 
@@ -117,7 +117,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve listar personagens")
-    void deveListarPersonagens() {
+    void testListarPersonagensValido() {
         Personagem personagem1 = criarPersonagem(1L, "Arthas");
         Personagem personagem2 = criarPersonagem(2L, "Jaina");
 
@@ -136,7 +136,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve buscar personagem por ID")
-    void deveBuscarPersonagemPorId() {
+    void testBuscarPersonagemPorIdValido() {
         Personagem personagem = criarPersonagem(1L, "Arthas");
 
         when(personagemService.read(1L))
@@ -155,7 +155,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve remover personagem")
-    void deveRemoverPersonagem() {
+    void testRemoverPersonagemValido() {
         when(personagemService.delete(1L))
                 .thenReturn(null);
 
@@ -169,7 +169,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve listar valores de campo do personagem")
-    void deveListarValoresCampoDoPersonagem() {
+    void testListarValoresCampoDoPersonagemValido() {
         when(valorCampoService.listByIdPersonagem(1L))
                 .thenReturn(List.of());
 
@@ -185,7 +185,7 @@ class PersonagemControllerTests {
 
     @Test
     @DisplayName("Deve listar campanhas participadas pelo personagem")
-    void deveListarCampanhasDoPersonagem() {
+    void testListarCampanhasDoPersonagemValido() {
         when(personagemCampanhaService.listByIdPersonagem(1L))
                 .thenReturn(List.of());
 
