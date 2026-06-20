@@ -1,8 +1,6 @@
 package edu.ifal.virtable.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

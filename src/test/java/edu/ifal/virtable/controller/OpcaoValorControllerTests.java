@@ -41,249 +41,230 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("OpcaoValorController - Testes unitários")
 class OpcaoValorControllerTests {
 
-    @Mock
-    private OpcaoValorService opcaoValorService;
+        @Mock
+        private OpcaoValorService opcaoValorService;
 
-    private MockMvc mockMvc;
+        private MockMvc mockMvc;
 
-    private JsonMapper jsonMapper;
+        private JsonMapper jsonMapper;
 
-    private TipoValor tipoValorValido;
+        private TipoValor tipoValorValido;
 
-    @BeforeEach
-    void setup() {
-        JacksonJsonHttpMessageConverter converter =
-                new JacksonJsonHttpMessageConverter();
+        @BeforeEach
+        void setup() {
+                JacksonJsonHttpMessageConverter converter = new JacksonJsonHttpMessageConverter();
 
-        jsonMapper = converter.getMapper();
+                jsonMapper = converter.getMapper();
 
-        tipoValorValido = TipoValor.values()[0];
+                tipoValorValido = TipoValor.values()[0];
 
-        OpcaoValorController controller =
-                new OpcaoValorController(opcaoValorService);
+                OpcaoValorController controller = new OpcaoValorController(opcaoValorService);
 
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
-                .setMessageConverters(converter)
-                .build();
-    }
+                mockMvc = MockMvcBuilders
+                                .standaloneSetup(controller)
+                                .setMessageConverters(converter)
+                                .build();
+        }
 
-    private String valorJsonDoEnum(Enum<?> valor) {
-        return jsonMapper
-                .valueToTree(valor)
-                .asText();
-    }
+        private String valorJsonDoEnum(Enum<?> valor) {
+                return jsonMapper
+                                .valueToTree(valor)
+                                .asString();
+        }
 
-    private CampoFicha criarCampoFicha() {
-        CampoFicha campoFicha = new CampoFicha();
+        private CampoFicha criarCampoFicha() {
+                CampoFicha campoFicha = new CampoFicha();
 
-        campoFicha.setId(1L);
-        campoFicha.setNome("Campo de teste");
-        campoFicha.setTipoValor(tipoValorValido);
+                campoFicha.setId(1L);
+                campoFicha.setNome("Campo de teste");
+                campoFicha.setTipoValor(tipoValorValido);
 
-        return campoFicha;
-    }
+                return campoFicha;
+        }
 
-    private OpcaoValor criarOpcao(
-            Long id,
-            String valor
-    ) {
-        return new OpcaoValor(
-                id,
-                criarCampoFicha(),
-                null,
-                valor
-        );
-    }
+        private OpcaoValor criarOpcao(
+                        Long id,
+                        String valor) {
+                return new OpcaoValor(
+                                id,
+                                criarCampoFicha(),
+                                null,
+                                valor);
+        }
 
-    private String criarCorpoJson(String valor) throws Exception {
-        ObjectNode campoFicha = jsonMapper.createObjectNode();
+        private String criarCorpoJson(String valor) throws Exception {
+                ObjectNode campoFicha = jsonMapper.createObjectNode();
 
-        campoFicha.put("id", 1L);
-        campoFicha.put("nome", "Campo de teste");
-        campoFicha.put(
-                "tipoValor",
-                valorJsonDoEnum(tipoValorValido)
-        );
+                campoFicha.put("id", 1L);
+                campoFicha.put("nome", "Campo de teste");
+                campoFicha.put(
+                                "tipoValor",
+                                valorJsonDoEnum(tipoValorValido));
 
-        ObjectNode corpo = jsonMapper.createObjectNode();
+                ObjectNode corpo = jsonMapper.createObjectNode();
 
-        /*
-         * CampoFicha vem antes de valor porque setValor()
-         * acessa campoFicha.getTipoValor().
-         */
-        corpo.set("campoFicha", campoFicha);
-        corpo.put("valor", valor);
+                /*
+                 * CampoFicha vem antes de valor porque setValor()
+                 * acessa campoFicha.getTipoValor().
+                 */
+                corpo.set("campoFicha", campoFicha);
+                corpo.put("valor", valor);
 
-        return jsonMapper.writeValueAsString(corpo);
-    }
+                return jsonMapper.writeValueAsString(corpo);
+        }
 
-    @Test
-    @DisplayName("Deve criar uma opção de valor válida")
-    void testCriarOpcaoValorValida() throws Exception {
-        when(opcaoValorService.create(any(OpcaoValor.class)))
-                .thenAnswer(invocation -> {
-                    OpcaoValor opcao =
-                            invocation.getArgument(0);
+        @Test
+        @DisplayName("Deve criar uma opção de valor válida")
+        void testCriarOpcaoValorValida() throws Exception {
+                when(opcaoValorService.create(any(OpcaoValor.class)))
+                                .thenAnswer(invocation -> {
+                                        OpcaoValor opcao = invocation.getArgument(0);
 
-                    opcao.setId(1L);
+                                        opcao.setId(1L);
 
-                    return opcao;
-                });
+                                        return opcao;
+                                });
 
-        String corpo = criarCorpoJson("10");
+                String corpo = criarCorpoJson("10");
 
-        mockMvc.perform(
-                        post("/opcoes-valor")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("10"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                post("/opcoes-valor")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("10"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(opcaoValorService)
-                .create(any(OpcaoValor.class));
-    }
+                verify(opcaoValorService)
+                                .create(any(OpcaoValor.class));
+        }
 
-    @Test
-    @DisplayName("Não deve criar opção sem valor")
-    void testCriarOpcaoSemValor() throws Exception {
-        ObjectNode campoFicha = jsonMapper.createObjectNode();
+        @Test
+        @DisplayName("Não deve criar opção sem valor")
+        void testCriarOpcaoSemValor() throws Exception {
+                ObjectNode campoFicha = jsonMapper.createObjectNode();
 
-        campoFicha.put("id", 1L);
-        campoFicha.put("nome", "Campo de teste");
-        campoFicha.put(
-                "tipoValor",
-                valorJsonDoEnum(tipoValorValido)
-        );
+                campoFicha.put("id", 1L);
+                campoFicha.put("nome", "Campo de teste");
+                campoFicha.put(
+                                "tipoValor",
+                                valorJsonDoEnum(tipoValorValido));
 
-        ObjectNode corpo = jsonMapper.createObjectNode();
+                ObjectNode corpo = jsonMapper.createObjectNode();
 
-        corpo.set("campoFicha", campoFicha);
+                corpo.set("campoFicha", campoFicha);
 
-        mockMvc.perform(
-                        post("/opcoes-valor")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(
-                                        jsonMapper.writeValueAsString(corpo)
-                                )
-                )
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(
+                                post("/opcoes-valor")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(
+                                                                jsonMapper.writeValueAsString(corpo)))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("Deve listar as opções de valor")
-    void testListarOpcoesValor() throws Exception {
-        OpcaoValor opcao1 = criarOpcao(1L, "10");
-        OpcaoValor opcao2 = criarOpcao(2L, "20");
+        @Test
+        @DisplayName("Deve listar as opções de valor")
+        void testListarOpcoesValor() throws Exception {
+                OpcaoValor opcao1 = criarOpcao(1L, "10");
+                OpcaoValor opcao2 = criarOpcao(2L, "20");
 
-        when(opcaoValorService.list())
-                .thenReturn(List.of(opcao1, opcao2));
+                when(opcaoValorService.list())
+                                .thenReturn(List.of(opcao1, opcao2));
 
-        mockMvc.perform(get("/opcoes-valor"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].valor").value("10"))
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].valor").value("20"));
+                mockMvc.perform(get("/opcoes-valor"))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$[0].id").value(1))
+                                .andExpect(jsonPath("$[0].valor").value("10"))
+                                .andExpect(jsonPath("$[1].id").value(2))
+                                .andExpect(jsonPath("$[1].valor").value("20"));
 
-        verify(opcaoValorService).list();
-    }
+                verify(opcaoValorService).list();
+        }
 
-    @Test
-    @DisplayName("Deve buscar uma opção pelo ID")
-    void testLerOpcaoValorValida() throws Exception {
-        OpcaoValor opcao = criarOpcao(1L, "10");
+        @Test
+        @DisplayName("Deve buscar uma opção pelo ID")
+        void testLerOpcaoValorValida() throws Exception {
+                OpcaoValor opcao = criarOpcao(1L, "10");
 
-        when(opcaoValorService.read(1L))
-                .thenReturn(opcao);
+                when(opcaoValorService.read(1L))
+                                .thenReturn(opcao);
 
-        mockMvc.perform(
-                        get("/opcoes-valor/{id}", 1L)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("10"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                get("/opcoes-valor/{id}", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("10"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(opcaoValorService).read(1L);
-    }
+                verify(opcaoValorService).read(1L);
+        }
 
-    @Test
-    @DisplayName("Deve atualizar uma opção de valor")
-    void testAtualizarOpcaoValorValida() throws Exception {
-        when(
-                opcaoValorService.update(
-                        eq(1L),
-                        any(OpcaoValor.class)
-                )
-        ).thenAnswer(invocation -> {
-            Long id = invocation.getArgument(0);
-            OpcaoValor opcao = invocation.getArgument(1);
+        @Test
+        @DisplayName("Deve atualizar uma opção de valor")
+        void testAtualizarOpcaoValorValida() throws Exception {
+                when(
+                                opcaoValorService.update(
+                                                eq(1L),
+                                                any(OpcaoValor.class)))
+                                .thenAnswer(invocation -> {
+                                        Long id = invocation.getArgument(0);
+                                        OpcaoValor opcao = invocation.getArgument(1);
 
-            opcao.setId(id);
+                                        opcao.setId(id);
 
-            return opcao;
-        });
+                                        return opcao;
+                                });
 
-        String corpo = criarCorpoJson("20");
+                String corpo = criarCorpoJson("20");
 
-        mockMvc.perform(
-                        put("/opcoes-valor/{id}", 1L)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("20"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                put("/opcoes-valor/{id}", 1L)
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("20"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(opcaoValorService).update(
-                eq(1L),
-                any(OpcaoValor.class)
-        );
-    }
+                verify(opcaoValorService).update(
+                                eq(1L),
+                                any(OpcaoValor.class));
+        }
 
-    @Test
-    @DisplayName("Deve remover uma opção de valor")
-    void testRemoverOpcaoValorValida() throws Exception {
-        when(opcaoValorService.delete(1L))
-                .thenReturn(null);
+        @Test
+        @DisplayName("Deve remover uma opção de valor")
+        void testRemoverOpcaoValorValida() throws Exception {
+                when(opcaoValorService.delete(1L))
+                                .thenReturn(null);
 
-        mockMvc.perform(
-                        delete("/opcoes-valor/{id}", 1L)
-                )
-                .andExpect(status().isOk());
+                mockMvc.perform(
+                                delete("/opcoes-valor/{id}", 1L))
+                                .andExpect(status().isOk());
 
-        verify(opcaoValorService).delete(1L);
-    }
+                verify(opcaoValorService).delete(1L);
+        }
 
-    @Test
-    @DisplayName("Deve retornar uma lista vazia")
-    void testListarOpcoesValorVazia() throws Exception {
-        when(opcaoValorService.list())
-                .thenReturn(List.of());
+        @Test
+        @DisplayName("Deve retornar uma lista vazia")
+        void testListarOpcoesValorVazia() throws Exception {
+                when(opcaoValorService.list())
+                                .thenReturn(List.of());
 
-        mockMvc.perform(get("/opcoes-valor"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                mockMvc.perform(get("/opcoes-valor"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$").isEmpty());
 
-        verify(opcaoValorService).list();
-    }
+                verify(opcaoValorService).list();
+        }
 }

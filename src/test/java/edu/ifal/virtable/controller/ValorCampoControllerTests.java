@@ -41,259 +41,237 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("ValorCampoController - Testes unitários")
 class ValorCampoControllerTests {
 
-    @Mock
-    private ValorCampoService valorCampoService;
+        @Mock
+        private ValorCampoService valorCampoService;
 
-    private MockMvc mockMvc;
+        private MockMvc mockMvc;
 
-    private JsonMapper jsonMapper;
+        private JsonMapper jsonMapper;
 
-    private TipoValor tipoValorValido;
+        private TipoValor tipoValorValido;
 
-    @BeforeEach
-    void setup() {
-        JacksonJsonHttpMessageConverter converter =
-                new JacksonJsonHttpMessageConverter();
+        @BeforeEach
+        void setup() {
+                JacksonJsonHttpMessageConverter converter = new JacksonJsonHttpMessageConverter();
 
-        jsonMapper = converter.getMapper();
+                jsonMapper = converter.getMapper();
 
-        tipoValorValido = TipoValor.values()[0];
+                tipoValorValido = TipoValor.values()[0];
 
-        ValorCampoController controller =
-                new ValorCampoController(valorCampoService);
+                ValorCampoController controller = new ValorCampoController(valorCampoService);
 
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
-                .setMessageConverters(converter)
-                .build();
-    }
+                mockMvc = MockMvcBuilders
+                                .standaloneSetup(controller)
+                                .setMessageConverters(converter)
+                                .build();
+        }
 
-    private String valorJsonDoEnum(Enum<?> valor) {
-        return jsonMapper
-                .valueToTree(valor)
-                .asText();
-    }
+        private String valorJsonDoEnum(Enum<?> valor) {
+                return jsonMapper
+                                .valueToTree(valor)
+                                .asString();
+        }
 
-    private CampoFicha criarCampoFicha() {
-        CampoFicha campoFicha = new CampoFicha();
+        private CampoFicha criarCampoFicha() {
+                CampoFicha campoFicha = new CampoFicha();
 
-        campoFicha.setId(1L);
-        campoFicha.setNome("Pontos de vida");
-        campoFicha.setTipoValor(tipoValorValido);
+                campoFicha.setId(1L);
+                campoFicha.setNome("Pontos de vida");
+                campoFicha.setTipoValor(tipoValorValido);
 
-        return campoFicha;
-    }
+                return campoFicha;
+        }
 
-    private ValorCampo criarValorCampo(
-            Long id,
-            String valor
-    ) {
-        ValorCampo valorCampo = new ValorCampo();
+        private ValorCampo criarValorCampo(
+                        Long id,
+                        String valor) {
+                ValorCampo valorCampo = new ValorCampo();
 
-        valorCampo.setId(id);
+                valorCampo.setId(id);
 
-        /*
-         * CampoFicha precisa ser definido antes do valor,
-         * pois setValor() acessa campoFicha.getTipoValor().
-         */
-        valorCampo.setCampoFicha(criarCampoFicha());
-        valorCampo.setValor(valor);
+                /*
+                 * CampoFicha precisa ser definido antes do valor,
+                 * pois setValor() acessa campoFicha.getTipoValor().
+                 */
+                valorCampo.setCampoFicha(criarCampoFicha());
+                valorCampo.setValor(valor);
 
-        return valorCampo;
-    }
+                return valorCampo;
+        }
 
-    private String criarCorpoJson(String valor) throws Exception {
-        ObjectNode campoFicha = jsonMapper.createObjectNode();
+        private String criarCorpoJson(String valor) throws Exception {
+                ObjectNode campoFicha = jsonMapper.createObjectNode();
 
-        campoFicha.put("id", 1L);
-        campoFicha.put("nome", "Pontos de vida");
-        campoFicha.put(
-                "tipoValor",
-                valorJsonDoEnum(tipoValorValido)
-        );
+                campoFicha.put("id", 1L);
+                campoFicha.put("nome", "Pontos de vida");
+                campoFicha.put(
+                                "tipoValor",
+                                valorJsonDoEnum(tipoValorValido));
 
-        ObjectNode corpo = jsonMapper.createObjectNode();
+                ObjectNode corpo = jsonMapper.createObjectNode();
 
-        /*
-         * A ordem é importante por causa do método setValor().
-         */
-        corpo.set("campoFicha", campoFicha);
-        corpo.put("valor", valor);
+                /*
+                 * A ordem é importante por causa do método setValor().
+                 */
+                corpo.set("campoFicha", campoFicha);
+                corpo.put("valor", valor);
 
-        return jsonMapper.writeValueAsString(corpo);
-    }
+                return jsonMapper.writeValueAsString(corpo);
+        }
 
-    @Test
-    @DisplayName("Deve criar um valor de campo válido")
-    void testCriarValorCampoValido() throws Exception {
-        when(valorCampoService.create(any(ValorCampo.class)))
-                .thenAnswer(invocation -> {
-                    ValorCampo valorCampo =
-                            invocation.getArgument(0);
+        @Test
+        @DisplayName("Deve criar um valor de campo válido")
+        void testCriarValorCampoValido() throws Exception {
+                when(valorCampoService.create(any(ValorCampo.class)))
+                                .thenAnswer(invocation -> {
+                                        ValorCampo valorCampo = invocation.getArgument(0);
 
-                    valorCampo.setId(1L);
+                                        valorCampo.setId(1L);
 
-                    return valorCampo;
-                });
+                                        return valorCampo;
+                                });
 
-        String corpo = criarCorpoJson("10");
+                String corpo = criarCorpoJson("10");
 
-        mockMvc.perform(
-                        post("/valores-campo")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("10"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                post("/valores-campo")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("10"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(valorCampoService)
-                .create(any(ValorCampo.class));
-    }
+                verify(valorCampoService)
+                                .create(any(ValorCampo.class));
+        }
 
-    @Test
-    @DisplayName("Não deve criar valor de campo sem valor")
-    void testCriarValorCampoSemValor() throws Exception {
-        ObjectNode campoFicha = jsonMapper.createObjectNode();
+        @Test
+        @DisplayName("Não deve criar valor de campo sem valor")
+        void testCriarValorCampoSemValor() throws Exception {
+                ObjectNode campoFicha = jsonMapper.createObjectNode();
 
-        campoFicha.put("id", 1L);
-        campoFicha.put("nome", "Pontos de vida");
-        campoFicha.put(
-                "tipoValor",
-                valorJsonDoEnum(tipoValorValido)
-        );
+                campoFicha.put("id", 1L);
+                campoFicha.put("nome", "Pontos de vida");
+                campoFicha.put(
+                                "tipoValor",
+                                valorJsonDoEnum(tipoValorValido));
 
-        ObjectNode corpo = jsonMapper.createObjectNode();
+                ObjectNode corpo = jsonMapper.createObjectNode();
 
-        corpo.set("campoFicha", campoFicha);
+                corpo.set("campoFicha", campoFicha);
 
-        mockMvc.perform(
-                        post("/valores-campo")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(
-                                        jsonMapper.writeValueAsString(corpo)
-                                )
-                )
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(
+                                post("/valores-campo")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(
+                                                                jsonMapper.writeValueAsString(corpo)))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("Deve listar os valores de campo")
-    void testListarValoresCampo() throws Exception {
-        ValorCampo valor1 =
-                criarValorCampo(1L, "10");
+        @Test
+        @DisplayName("Deve listar os valores de campo")
+        void testListarValoresCampo() throws Exception {
+                ValorCampo valor1 = criarValorCampo(1L, "10");
 
-        ValorCampo valor2 =
-                criarValorCampo(2L, "20");
+                ValorCampo valor2 = criarValorCampo(2L, "20");
 
-        when(valorCampoService.list())
-                .thenReturn(List.of(valor1, valor2));
+                when(valorCampoService.list())
+                                .thenReturn(List.of(valor1, valor2));
 
-        mockMvc.perform(get("/valores-campo"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].valor").value("10"))
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].valor").value("20"));
+                mockMvc.perform(get("/valores-campo"))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$[0].id").value(1))
+                                .andExpect(jsonPath("$[0].valor").value("10"))
+                                .andExpect(jsonPath("$[1].id").value(2))
+                                .andExpect(jsonPath("$[1].valor").value("20"));
 
-        verify(valorCampoService).list();
-    }
+                verify(valorCampoService).list();
+        }
 
-    @Test
-    @DisplayName("Deve buscar um valor de campo pelo ID")
-    void testLerValorCampoValido() throws Exception {
-        ValorCampo valorCampo =
-                criarValorCampo(1L, "15");
+        @Test
+        @DisplayName("Deve buscar um valor de campo pelo ID")
+        void testLerValorCampoValido() throws Exception {
+                ValorCampo valorCampo = criarValorCampo(1L, "15");
 
-        when(valorCampoService.read(1L))
-                .thenReturn(valorCampo);
+                when(valorCampoService.read(1L))
+                                .thenReturn(valorCampo);
 
-        mockMvc.perform(
-                        get("/valores-campo/{id}", 1L)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("15"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                get("/valores-campo/{id}", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("15"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(valorCampoService).read(1L);
-    }
+                verify(valorCampoService).read(1L);
+        }
 
-    @Test
-    @DisplayName("Deve atualizar um valor de campo")
-    void testAtualizarValorCampoValido() throws Exception {
-        when(
-                valorCampoService.update(
-                        eq(1L),
-                        any(ValorCampo.class)
-                )
-        ).thenAnswer(invocation -> {
-            Long id = invocation.getArgument(0);
-            ValorCampo valorCampo =
-                    invocation.getArgument(1);
+        @Test
+        @DisplayName("Deve atualizar um valor de campo")
+        void testAtualizarValorCampoValido() throws Exception {
+                when(
+                                valorCampoService.update(
+                                                eq(1L),
+                                                any(ValorCampo.class)))
+                                .thenAnswer(invocation -> {
+                                        Long id = invocation.getArgument(0);
+                                        ValorCampo valorCampo = invocation.getArgument(1);
 
-            valorCampo.setId(id);
+                                        valorCampo.setId(id);
 
-            return valorCampo;
-        });
+                                        return valorCampo;
+                                });
 
-        String corpo = criarCorpoJson("25");
+                String corpo = criarCorpoJson("25");
 
-        mockMvc.perform(
-                        put("/valores-campo/{id}", 1L)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(corpo)
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(
-                        MediaType.APPLICATION_JSON
-                ))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.valor").value("25"))
-                .andExpect(jsonPath("$.campoFicha.id").value(1));
+                mockMvc.perform(
+                                put("/valores-campo/{id}", 1L)
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.valor").value("25"))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1));
 
-        verify(valorCampoService).update(
-                eq(1L),
-                any(ValorCampo.class)
-        );
-    }
+                verify(valorCampoService).update(
+                                eq(1L),
+                                any(ValorCampo.class));
+        }
 
-    @Test
-    @DisplayName("Deve remover um valor de campo")
-    void testRemoverValorCampoValido() throws Exception {
-        when(valorCampoService.delete(1L))
-                .thenReturn(null);
+        @Test
+        @DisplayName("Deve remover um valor de campo")
+        void testRemoverValorCampoValido() throws Exception {
+                when(valorCampoService.delete(1L))
+                                .thenReturn(null);
 
-        mockMvc.perform(
-                        delete("/valores-campo/{id}", 1L)
-                )
-                .andExpect(status().isOk());
+                mockMvc.perform(
+                                delete("/valores-campo/{id}", 1L))
+                                .andExpect(status().isOk());
 
-        verify(valorCampoService).delete(1L);
-    }
+                verify(valorCampoService).delete(1L);
+        }
 
-    @Test
-    @DisplayName("Deve retornar uma lista vazia")
-    void testListarValoresCampoVazio() throws Exception {
-        when(valorCampoService.list())
-                .thenReturn(List.of());
+        @Test
+        @DisplayName("Deve retornar uma lista vazia")
+        void testListarValoresCampoVazio() throws Exception {
+                when(valorCampoService.list())
+                                .thenReturn(List.of());
 
-        mockMvc.perform(get("/valores-campo"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                mockMvc.perform(get("/valores-campo"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$").isArray())
+                                .andExpect(jsonPath("$").isEmpty());
 
-        verify(valorCampoService).list();
-    }
+                verify(valorCampoService).list();
+        }
 }

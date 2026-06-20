@@ -8,7 +8,6 @@ import edu.ifal.virtable.service.CampanhaService;
 import edu.ifal.virtable.service.PersonagemService;
 import edu.ifal.virtable.service.UsuarioCampanhaService;
 import edu.ifal.virtable.service.UsuarioService;
-import jakarta.validation.Valid;
 
 import java.util.List;
 
