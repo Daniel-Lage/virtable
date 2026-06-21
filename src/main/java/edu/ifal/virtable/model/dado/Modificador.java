@@ -31,12 +31,12 @@ public class Modificador implements Item {
 
     @NotNull(message = "Não deve ser nulo")
     @Column(name = "vlr_multiplicador")
-    private int multiplicador;
+    private Integer multiplicador;
 
     public Modificador() {
     }
 
-    public Modificador(Long id, CampoFicha campoFicha, Dado dado, int multiplicador) {
+    public Modificador(Long id, CampoFicha campoFicha, Dado dado, Integer multiplicador) {
         this.id = id;
         this.campoFicha = campoFicha;
         this.dado = dado;
@@ -67,11 +67,11 @@ public class Modificador implements Item {
         this.dado = dado;
     }
 
-    public int getMultiplicador() {
+    public Integer getMultiplicador() {
         return multiplicador;
     }
 
-    public void setMultiplicador(int multiplicador) {
+    public void setMultiplicador(Integer multiplicador) {
         this.multiplicador = multiplicador;
     }
 }

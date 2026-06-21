@@ -89,6 +89,43 @@ class ModificadorControllerTests {
         }
 
         @Test
+        @DisplayName("Deve criar um modificador com campos relacionados por id")
+        void testCriarModificadorComIdsRelacionados() throws Exception {
+
+                when(modificadorService.create(any(Modificador.class)))
+                                .thenAnswer(invocation -> {
+                                        Modificador modificador = invocation.getArgument(0);
+
+                                        modificador.setId(1L);
+
+                                        return modificador;
+                                });
+
+                String corpo = """
+                                {
+                                  "campoFicha": { "id": 1 },
+                                  "dado": { "id": 1 },
+                                  "multiplicador": 2
+                                }
+                                """;
+
+                mockMvc.perform(
+                                post("/modificadores")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(corpo))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentTypeCompatibleWith(
+                                                MediaType.APPLICATION_JSON))
+                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.multiplicador").value(2))
+                                .andExpect(jsonPath("$.campoFicha.id").value(1))
+                                .andExpect(jsonPath("$.dado.id").value(1));
+
+                verify(modificadorService)
+                                .create(any(Modificador.class));
+        }
+
+        @Test
         @DisplayName("NÃo deve criar modificador com multiplicador nulo")
         void testCriarModificadorMultiplicadorNulo() throws Exception {
 

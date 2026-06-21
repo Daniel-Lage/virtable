@@ -58,7 +58,7 @@ class DadoControllerTests {
 
                 dado.setId(id);
                 dado.setNome(nome);
-                dado.setLimit(limite);
+                dado.setLimite(limite);
 
                 return dado;
         }

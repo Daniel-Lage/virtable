@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ifal.virtable.model.campanha.Campanha;
 import edu.ifal.virtable.model.dado.Dado;
 import edu.ifal.virtable.model.ficha.CampoFicha;
+import edu.ifal.virtable.model.personagem.Personagem;
 import edu.ifal.virtable.model.sistema.SistemaRPG;
 import edu.ifal.virtable.service.CampanhaService;
 import edu.ifal.virtable.service.CampoFichaService;
 import edu.ifal.virtable.service.DadoService;
+import edu.ifal.virtable.service.PersonagemService;
 import edu.ifal.virtable.service.SistemaRPGService;
 
 @RestController
@@ -24,13 +26,20 @@ public class SistemaRPGController extends CrudController<SistemaRPG> {
     private final DadoService dadoService;
     private final CampoFichaService campoFichaService;
     private final CampanhaService campanhaService;
+    private final PersonagemService personagemService;
 
     public SistemaRPGController(SistemaRPGService sistemaRPGService, CampanhaService campanhaService,
-            CampoFichaService campoFichaService, DadoService dadoService) {
+            CampoFichaService campoFichaService, DadoService dadoService, PersonagemService personagemService) {
         super(sistemaRPGService);
         this.campanhaService = campanhaService;
         this.campoFichaService = campoFichaService;
         this.dadoService = dadoService;
+        this.personagemService = personagemService;
+    }
+
+    @GetMapping("/{id}/personagens")
+    public ResponseEntity<List<Personagem>> listPersonagens(@PathVariable Long id) {
+        return ResponseEntity.ok(personagemService.listByIdSistemaRPG(id));
     }
 
     @GetMapping("/{id}/campanhas")

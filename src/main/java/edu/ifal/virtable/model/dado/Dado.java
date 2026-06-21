@@ -30,16 +30,16 @@ public class Dado implements Item {
     private String nome;
 
     @NotNull(message = "Não deve ser nulo")
-    private int limit;
+    private Integer limite;
 
     public Dado() {
     }
 
-    public Dado(Long id, SistemaRPG sistemaRPG, String nome, int limit) {
+    public Dado(Long id, SistemaRPG sistemaRPG, String nome, Integer limite) {
         this.id = id;
         this.sistemaRPG = sistemaRPG;
         this.nome = nome;
-        this.limit = limit;
+        this.limite = limite;
     }
 
     public Long getId() {
@@ -58,7 +58,7 @@ public class Dado implements Item {
         this.sistemaRPG = sistemaRPG;
     }
 
-    public String getName() {
+    public String getNome() {
         return this.nome;
     }
 
@@ -66,11 +66,11 @@ public class Dado implements Item {
         this.nome = nome;
     }
 
-    public int getLimit() {
-        return this.limit;
+    public Integer getLimite() {
+        return this.limite;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public void setLimite(Integer limite) {
+        this.limite = limite;
     }
 }
